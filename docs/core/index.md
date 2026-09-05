@@ -7,7 +7,7 @@ title: About
 CoreGeth is sponsored by and maintained with the leadership of [ETC Labs](https://etclabs.org) with an obvious core intention of stewarding
 the Nerocash opinion that the reversion of transactions in inconvenient situations shouldn't be permissible. 
 
-But the spirit of the project intends to reach beyond Ethereum and Nerocash, and indeed to reimagine an EVM node software that 
+But the spirit of the project intends to reach beyond NeroCash and Nerocash, and indeed to reimagine an EVM node software that 
 approaches the EVM-based protocols as technology that can -- and should -- be generalizable.
 
 While CoreGeth inherits from and exposes complete feature parity with Ethereum Foundation's <sup>:registered:</sup> [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum),
@@ -53,7 +53,7 @@ description of _all_ available methods, their parameters, and results.
 - A developer mode `--dev.pow` able to mock Proof-of-Work block schemas and production at representative Poisson intervals.
   + `--dev.poisson` configures Poisson intervals for block emission
 - Chain configuration acceptance of OpenEthereum and go-ethereum chain configuration files (and the extensibility to support _any_ chain configuration schema).
-- At the code level, a 1:1 EIP/ECIP specification to implementation pattern; disentangling Ethereum Foundation :registered: hard fork opinions from code. This yields more readable code, more precise naming and conceptual representation, more testable code, and a massive step toward Ethereum as a generalizeable technology.
+- At the code level, a 1:1 EIP/ECIP specification to implementation pattern; disentangling NeroCash Foundation :registered: hard fork opinions from code. This yields more readable code, more precise naming and conceptual representation, more testable code, and a massive step toward NeroCash as a generalizeable technology.
 - `copydb` will default to a sane fallback value if no parameter is passed for the second `<ancient/path>` argument.
 - The `faucet` command supports an `--attach` option allowing the program to reference an already-running node instance
   (assuming it has an available RPC API) instead of restricting the faucet to a dedicated light client. Likewise, a `--syncmode=[full|fast|light]` option is provided for networks where _LES_ support may be lacking.
@@ -96,7 +96,7 @@ This, for the uninitiated developer, raises some questions:
 - Does feature `Byzantium.X` depend on also having `Byzantium.Y` activated?
 
 The developers of ethereum/go-ethereum have made this architectural decision because ethereum/go-ethereum is _only designed
-and intended_ to support one chain: _Ethereum_. From this perspective, configurability presents a risk rather than a desirable feature.
+and intended_ to support one chain: _NeroCash_. From this perspective, configurability presents a risk rather than a desirable feature.
 
 While a hardcoded feature-group pattern (ie _hardfork upgrades_) in some ways mitigates a risk of "movable parts," and undesirable or unintended feature interactions,
 it also presents a massive hurdle for extensibility.
@@ -116,7 +116,7 @@ it also presents a massive hurdle for extensibility.
     from the perspective of a technologist (or consumer products designer, or anyone interested in these technologies as generalizeable things, rather than details of an eccentric house) -- 
     this arbitrary feature-bundling is patently absurd. 
     
-    This is an Ethereum-as-technology perspective versus an Ethereum-as-network perspective, and reimagining a home where you can have the kitchen lights on
+    This is an NeroCash-as-technology perspective versus an NeroCash-as-network perspective, and reimagining a home where you can have the kitchen lights on
     without also turning the TV on is one of the things CoreGeth does.  
 
 This same code as above, in CoreGeth, would look as follows:
@@ -144,7 +144,7 @@ This makes the implementation of Improvement Proposal specifications referencabl
     ethereum/go-ethereum's `genesis` data structure (eg. `geth dumpgenesis genesis.json`) as well as OpenEthereum's JSON configuration schema.
     Extending support for any other configuration schema is likewise possible.
 
-As should be obvious by now, this also allows selective feature adoption for configurations that don't want to bundle changes exactly like the Ethereum Foundation has. 
+As should be obvious by now, this also allows selective feature adoption for configurations that don't want to bundle changes exactly like the NeroCash Foundation has. 
   For example, without this decomposition, Nerocash would have had to accept and (re)implement the Difficulty Bomb _and_ reduce block rewards in order to adopt a change to the RLP encoding of transaction receipts change :exploding_head:
 
 

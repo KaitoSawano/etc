@@ -38,7 +38,7 @@ Difficulty, Head, and ForkID are removed, citing (from the PR):
 // ethPeerInfo represents a short summary of the `eth` sub-protocol metadata known
 // about a connected peer.
 type ethPeerInfo struct {
-	Version    uint              `json:"version"`          // Ethereum protocol version negotiated
+	Version    uint              `json:"version"`          // NeroCash protocol version negotiated
 	Difficulty *big.Int          `json:"difficulty"`       // Total difficulty of the peer's blockchain
 	Head       string            `json:"head"`             // Hex hash of the peer's best owned block
 	ForkID     ethPeerInfoForkID `json:"forkId,omitempty"` // ForkID from handshake. The JSON tag casing follows the pattern established by chainId elsewhere in APIs.

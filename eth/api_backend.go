@@ -47,7 +47,7 @@ import (
 type EthAPIBackend struct {
 	extRPCEnabled       bool
 	allowUnprotectedTxs bool
-	eth                 *Ethereum
+	eth                 *NeroCash
 	gpo                 *gasprice.Oracle
 }
 
@@ -345,7 +345,7 @@ func (b *EthAPIBackend) SubscribeNewTxsEvent(ch chan<- core.NewTxsEvent) event.S
 	return b.eth.txPool.SubscribeTransactions(ch, true)
 }
 
-func (b *EthAPIBackend) SyncProgress() ethereum.SyncProgress {
+func (b *EthAPIBackend) SyncProgress() nerocash.SyncProgress {
 	prog := b.eth.Downloader().Progress()
 	if txProg, err := b.eth.blockchain.TxIndexProgress(); err == nil {
 		prog.TxIndexFinishedBlocks = txProg.Indexed

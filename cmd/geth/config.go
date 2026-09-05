@@ -167,7 +167,7 @@ func makeConfigNode(ctx *cli.Context) (*node.Node, gethConfig) {
 	return stack, cfg
 }
 
-// makeFullNode loads geth configuration and creates the Ethereum backend.
+// makeFullNode loads geth configuration and creates the NeroCash backend.
 func makeFullNode(ctx *cli.Context) (*node.Node, ethapi.Backend) {
 	stack, cfg := makeConfigNode(ctx)
 	if ctx.IsSet(utils.ECBP1100Flag.Name) {
@@ -222,7 +222,7 @@ func makeFullNode(ctx *cli.Context) (*node.Node, ethapi.Backend) {
 	if ctx.IsSet(utils.GraphQLEnabledFlag.Name) {
 		utils.RegisterGraphQLService(stack, backend, filterSystem, &cfg.Node)
 	}
-	// Add the Ethereum Stats daemon if requested.
+	// Add the NeroCash Stats daemon if requested.
 	if cfg.Ethstats.URL != "" {
 		utils.RegisterEthStatsService(stack, backend, cfg.Ethstats.URL)
 	}

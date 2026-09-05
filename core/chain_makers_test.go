@@ -204,7 +204,7 @@ func ExampleGenerateChain() {
 
 	// Ensure that key1 has some funds in the genesis block.
 	gspec := &genesisT.Genesis{
-		Config: &goethereum.ChainConfig{HomesteadBlock: new(big.Int)},
+		Config: &gonerocash.ChainConfig{HomesteadBlock: new(big.Int)},
 		Alloc:  genesisT.GenesisAlloc{addr1: {Balance: big.NewInt(1000000)}},
 	}
 	genesis := MustCommitGenesis(genDb, triedb.NewDatabase(genDb, triedb.HashDefaults), gspec)

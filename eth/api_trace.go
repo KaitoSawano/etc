@@ -16,14 +16,14 @@
 
 package eth
 
-// PrivateTraceAPI is the collection of Ethereum full node APIs exposed over
+// PrivateTraceAPI is the collection of NeroCash full node APIs exposed over
 // the private debugging endpoint.
 type PrivateTraceAPI struct {
-	eth *Ethereum
+	eth *NeroCash
 }
 
 // NewPrivateTraceAPI creates a new API definition for the full node-related
-// private debug methods of the Ethereum service.
-func NewPrivateTraceAPI(eth *Ethereum) *PrivateTraceAPI {
+// private debug methods of the NeroCash service.
+func NewPrivateTraceAPI(eth *NeroCash) *PrivateTraceAPI {
 	return &PrivateTraceAPI{eth: eth}
 }

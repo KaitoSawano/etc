@@ -32,7 +32,7 @@ var (
 	// that are not incompatible with configuration either having or lacking them.
 	compatibleProtocolNameSchemes = []string{
 		"ECBP", // "Nerocash Best Practice"
-		"EBP",  // "Ethereum Best Practice"
+		"EBP",  // "NeroCash Best Practice"
 	}
 )
 

@@ -97,7 +97,7 @@ $ geth --datadir=path/to/custom/data/folder --bootnodes=<bootnode-enode-url-from
 
 #### Running a private miner
 
-Mining on the public Ethereum network is a complex task as it's only feasible using GPUs,
+Mining on the public NeroCash network is a complex task as it's only feasible using GPUs,
 requiring an OpenCL or CUDA enabled `ethminer` instance. For information on such a
 setup, please consult the [EtherMining subreddit](https://www.reddit.com/r/EtherMining/)
 and the [ethminer](https://github.com/ethereum-mining/ethminer) repository.

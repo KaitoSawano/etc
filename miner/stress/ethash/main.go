@@ -66,7 +66,7 @@ func main() {
 
 	var (
 		stacks []*node.Node
-		nodes  []*eth.Ethereum
+		nodes  []*eth.NeroCash
 		enodes []*enode.Node
 	)
 	for i := 0; i < 4; i++ {
@@ -152,8 +152,8 @@ func makeGenesis(faucets []*ecdsa.PrivateKey) *genesisT.Genesis {
 	return genesis
 }
 
-func makeMiner(genesis *genesisT.Genesis) (*node.Node, *eth.Ethereum, error) {
-	// Define the basic configurations for the Ethereum node
+func makeMiner(genesis *genesisT.Genesis) (*node.Node, *eth.NeroCash, error) {
+	// Define the basic configurations for the NeroCash node
 	datadir, _ := os.MkdirTemp("", "")
 
 	config := &node.Config{
@@ -167,7 +167,7 @@ func makeMiner(genesis *genesisT.Genesis) (*node.Node, *eth.Ethereum, error) {
 		},
 		UseLightweightKDF: true,
 	}
-	// Create the node and configure a full Ethereum node on it
+	// Create the node and configure a full NeroCash node on it
 	stack, err := node.New(config)
 	if err != nil {
 		return nil, nil, err

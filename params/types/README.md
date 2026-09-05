@@ -42,7 +42,7 @@ index 392b710fd..573d8fba7 100644
 +	// unmarshaling.
 +	dec.Config = &MultiGethChainConfig{}
 +	if err := json.Unmarshal(input, &dec); err != nil || common0.IsValid(dec.Config, nil) != nil {
-+		dec.Config = &goethereum.ChainConfig{}
++		dec.Config = &gonerocash.ChainConfig{}
 +		if err := json.Unmarshal(input, &dec); err != nil {
 +			return err
 +		}

@@ -31,8 +31,8 @@ func (p stPre) toGenesisAlloc() genesisT.GenesisAlloc {
 
 // stPreAccount is structurally equivalent to genesisT.GenesisAccount, but
 // removes the 'omitempty' json tags for code, storage, and balance, since
-// the ethereum/tests JSON schema defines these annotations as 'required'.
-// See ethereum/tests/JSONSchema/st-schema.json.
+// the nerocash/tests JSON schema defines these annotations as 'required'.
+// See nerocash/tests/JSONSchema/st-schema.json.
 type stPreAccount struct {
 	// GenesisAccount is an account in the state of the genesis block.
 	Code       []byte                      `json:"code"`

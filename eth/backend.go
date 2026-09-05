@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package eth implements the Ethereum protocol.
+// Package eth implements the NeroCash protocol.
 package eth
 
 import (
@@ -68,8 +68,8 @@ import (
 // Deprecated: use ethconfig.Config instead.
 type Config = ethconfig.Config
 
-// Ethereum implements the Ethereum full node service.
-type Ethereum struct {
+// NeroCash implements the NeroCash full node service.
+type NeroCash struct {
 	config *ethconfig.Config
 
 	// Handlers
@@ -108,12 +108,12 @@ type Ethereum struct {
 	shutdownTracker *shutdowncheck.ShutdownTracker // Tracks if and when the node has shutdown ungracefully
 }
 
-// New creates a new Ethereum object (including the
-// initialisation of the common Ethereum object)
-func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
+// New creates a new NeroCash object (including the
+// initialisation of the common NeroCash object)
+func New(stack *node.Node, config *ethconfig.Config) (*NeroCash, error) {
 	// Ensure configuration values are compatible and sane
 	if config.SyncMode == downloader.LightSync {
-		return nil, errors.New("can't run eth.Ethereum in light sync mode, light mode has been deprecated")
+		return nil, errors.New("can't run eth.NeroCash in light sync mode, light mode has been deprecated")
 	}
 	if !config.SyncMode.IsValid() {
 		return nil, fmt.Errorf("invalid sync mode %d", config.SyncMode)
@@ -133,7 +133,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 	}
 	log.Info("Allocated trie memory caches", "clean", common.StorageSize(config.TrieCleanCache)*1024*1024, "dirty", common.StorageSize(config.TrieDirtyCache)*1024*1024)
 
-	// Assemble the Ethereum object
+	// Assemble the NeroCash object
 	chainDb, err := stack.OpenDatabaseWithFreezer("chaindata", config.DatabaseCache, config.DatabaseHandles, config.DatabaseFreezer, "eth/db/chaindata/", false)
 	if err != nil {
 		return nil, err
@@ -178,7 +178,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 	if networkID == 0 {
 		networkID = chainConfig.GetChainID().Uint64()
 	}
-	eth := &Ethereum{
+	eth := &NeroCash{
 		config:            config,
 		merger:            consensus.NewMerger(chainDb),
 		chainDb:           chainDb,
@@ -199,7 +199,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 	if bcVersion != nil {
 		dbVer = fmt.Sprintf("%d", *bcVersion)
 	}
-	log.Info("Initialising Ethereum protocol", "network", networkID, "dbversion", dbVer)
+	log.Info("Initialising NeroCash protocol", "network", networkID, "dbversion", dbVer)
 
 	if !config.SkipBcVersionCheck {
 		if bcVersion != nil && *bcVersion > core.BlockChainVersion {
@@ -280,7 +280,7 @@ func New(stack *node.Node, config *ethconfig.Config) (*Ethereum, error) {
 	if checkpoint == nil {
 		if p, ok := eth.blockchain.Config().(*coregeth.CoreGethChainConfig); ok {
 			checkpoint = p.TrustedCheckpoint
-		} else if p, ok := eth.blockchain.Config().(*goethereum.ChainConfig); ok {
+		} else if p, ok := eth.blockchain.Config().(*gonerocash.ChainConfig); ok {
 			checkpoint = p.TrustedCheckpoint
 		}
 	}
@@ -354,9 +354,9 @@ func makeExtraData(extra []byte) []byte {
 	return extra
 }
 
-// APIs return the collection of RPC services the ethereum package offers.
+// APIs return the collection of RPC services the nerocash package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *Ethereum) APIs() []rpc.API {
+func (s *NeroCash) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.APIBackend)
 
 	// Append any APIs exposed explicitly by the consensus engine
@@ -366,7 +366,7 @@ func (s *Ethereum) APIs() []rpc.API {
 	return append(apis, []rpc.API{
 		{
 			Namespace: "eth",
-			Service:   NewEthereumAPI(s),
+			Service:   NewNeroCashAPI(s),
 		}, {
 			Namespace: "miner",
 			Service:   NewMinerAPI(s),
@@ -386,11 +386,11 @@ func (s *Ethereum) APIs() []rpc.API {
 	}...)
 }
 
-func (s *Ethereum) ResetWithGenesisBlock(gb *types.Block) {
+func (s *NeroCash) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *Ethereum) Etherbase() (eb common.Address, err error) {
+func (s *NeroCash) Etherbase() (eb common.Address, err error) {
 	s.lock.RLock()
 	etherbase := s.etherbase
 	s.lock.RUnlock()
@@ -406,7 +406,7 @@ func (s *Ethereum) Etherbase() (eb common.Address, err error) {
 //
 // We regard two types of accounts as local miner account: etherbase
 // and accounts specified via `txpool.locals` flag.
-func (s *Ethereum) isLocalBlock(header *types.Header) bool {
+func (s *NeroCash) isLocalBlock(header *types.Header) bool {
 	author, err := s.engine.Author(header)
 	if err != nil {
 		log.Warn("Failed to retrieve block author", "number", header.Number.Uint64(), "hash", header.Hash(), "err", err)
@@ -432,7 +432,7 @@ func (s *Ethereum) isLocalBlock(header *types.Header) bool {
 // shouldPreserve checks whether we should preserve the given block
 // during the chain reorg depending on whether the author of block
 // is a local account.
-func (s *Ethereum) shouldPreserve(header *types.Header) bool {
+func (s *NeroCash) shouldPreserve(header *types.Header) bool {
 	// The reason we need to disable the self-reorg preserving for clique
 	// is it can be probable to introduce a deadlock.
 	//
@@ -456,7 +456,7 @@ func (s *Ethereum) shouldPreserve(header *types.Header) bool {
 }
 
 // SetEtherbase sets the mining reward address.
-func (s *Ethereum) SetEtherbase(etherbase common.Address) {
+func (s *NeroCash) SetEtherbase(etherbase common.Address) {
 	s.lock.Lock()
 	s.etherbase = etherbase
 	s.lock.Unlock()
@@ -467,7 +467,7 @@ func (s *Ethereum) SetEtherbase(etherbase common.Address) {
 // StartMining starts the miner with the given number of CPU threads. If mining
 // is already running, this method adjust the number of threads allowed to use
 // and updates the minimum price required by the transaction pool.
-func (s *Ethereum) StartMining(threads int) error {
+func (s *NeroCash) StartMining(threads int) error {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -520,7 +520,7 @@ func (s *Ethereum) StartMining(threads int) error {
 
 // StopMining terminates the miner, both at the consensus engine level as well as
 // at the block creation level.
-func (s *Ethereum) StopMining() {
+func (s *NeroCash) StopMining() {
 	// Update the thread count within the consensus engine
 	type threaded interface {
 		SetThreads(threads int)
@@ -532,34 +532,34 @@ func (s *Ethereum) StopMining() {
 	s.miner.Stop()
 }
 
-func (s *Ethereum) IsMining() bool      { return s.miner.Mining() }
-func (s *Ethereum) Miner() *miner.Miner { return s.miner }
+func (s *NeroCash) IsMining() bool      { return s.miner.Mining() }
+func (s *NeroCash) Miner() *miner.Miner { return s.miner }
 
-func (s *Ethereum) AccountManager() *accounts.Manager { return s.accountManager }
-func (s *Ethereum) BlockChain() *core.BlockChain      { return s.blockchain }
-func (s *Ethereum) TxPool() *txpool.TxPool            { return s.txPool }
-func (s *Ethereum) EventMux() *event.TypeMux          { return s.eventMux }
-func (s *Ethereum) Engine() consensus.Engine          { return s.engine }
-func (s *Ethereum) ChainDb() ethdb.Database           { return s.chainDb }
-func (s *Ethereum) IsListening() bool                 { return true } // Always listening
-func (s *Ethereum) EthVersion() int {
+func (s *NeroCash) AccountManager() *accounts.Manager { return s.accountManager }
+func (s *NeroCash) BlockChain() *core.BlockChain      { return s.blockchain }
+func (s *NeroCash) TxPool() *txpool.TxPool            { return s.txPool }
+func (s *NeroCash) EventMux() *event.TypeMux          { return s.eventMux }
+func (s *NeroCash) Engine() consensus.Engine          { return s.engine }
+func (s *NeroCash) ChainDb() ethdb.Database           { return s.chainDb }
+func (s *NeroCash) IsListening() bool                 { return true } // Always listening
+func (s *NeroCash) EthVersion() int {
 	return int(eth.MakeProtocols((*ethHandler)(s.handler), s.networkID, s.config.ProtocolVersions, s.ethDialCandidates)[0].Version)
 }
-func (s *Ethereum) NetVersion() uint64                 { return s.networkID }
-func (s *Ethereum) Downloader() *downloader.Downloader { return s.handler.downloader }
-func (s *Ethereum) Synced() bool                       { return s.handler.synced.Load() }
-func (s *Ethereum) SetSynced()                         { s.handler.enableSyncedFeatures() }
-func (s *Ethereum) ArchiveMode() bool                  { return s.config.NoPruning }
-func (s *Ethereum) BloomIndexer() *core.ChainIndexer   { return s.bloomIndexer }
-func (s *Ethereum) Merger() *consensus.Merger          { return s.merger }
-func (s *Ethereum) SyncMode() downloader.SyncMode {
+func (s *NeroCash) NetVersion() uint64                 { return s.networkID }
+func (s *NeroCash) Downloader() *downloader.Downloader { return s.handler.downloader }
+func (s *NeroCash) Synced() bool                       { return s.handler.synced.Load() }
+func (s *NeroCash) SetSynced()                         { s.handler.enableSyncedFeatures() }
+func (s *NeroCash) ArchiveMode() bool                  { return s.config.NoPruning }
+func (s *NeroCash) BloomIndexer() *core.ChainIndexer   { return s.bloomIndexer }
+func (s *NeroCash) Merger() *consensus.Merger          { return s.merger }
+func (s *NeroCash) SyncMode() downloader.SyncMode {
 	mode, _ := s.handler.chainSync.modeAndLocalHead()
 	return mode
 }
 
 // Protocols returns all the currently configured
 // network protocols to start.
-func (s *Ethereum) Protocols() []p2p.Protocol {
+func (s *NeroCash) Protocols() []p2p.Protocol {
 	protos := eth.MakeProtocols((*ethHandler)(s.handler), s.networkID, s.config.ProtocolVersions, s.ethDialCandidates)
 	if s.config.SnapshotCache > 0 {
 		protos = append(protos, snap.MakeProtocols((*snapHandler)(s.handler), s.snapDialCandidates)...)
@@ -568,8 +568,8 @@ func (s *Ethereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Lifecycle, starting all internal goroutines needed by the
-// Ethereum protocol implementation.
-func (s *Ethereum) Start() error {
+// NeroCash protocol implementation.
+func (s *NeroCash) Start() error {
 	eth.StartENRUpdater(s.blockchain, s.p2pServer.LocalNode())
 
 	// Start the bloom bits servicing goroutines
@@ -592,8 +592,8 @@ func (s *Ethereum) Start() error {
 }
 
 // Stop implements node.Lifecycle, terminating all internal goroutines used by the
-// Ethereum protocol.
-func (s *Ethereum) Stop() error {
+// NeroCash protocol.
+func (s *NeroCash) Stop() error {
 	// Stop all the peer-related stuff first.
 	s.ethDialCandidates.Close()
 	s.snapDialCandidates.Close()

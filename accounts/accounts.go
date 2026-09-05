@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package accounts implements high level Ethereum account management.
+// Package accounts implements high level NeroCash account management.
 package accounts
 
 import (
@@ -28,10 +28,10 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
-// Account represents an Ethereum account located at a specific location defined
+// Account represents an NeroCash account located at a specific location defined
 // by the optional URL field.
 type Account struct {
-	Address common.Address `json:"address"` // Ethereum account address derived from the key
+	Address common.Address `json:"address"` // NeroCash account address derived from the key
 	URL     URL            `json:"url"`     // Optional resource locator within a backend
 }
 
@@ -98,7 +98,7 @@ type Wallet interface {
 	//
 	// You can disable automatic account discovery by calling SelfDerive with a nil
 	// chain state reader.
-	SelfDerive(bases []DerivationPath, chain ethereum.ChainStateReader)
+	SelfDerive(bases []DerivationPath, chain nerocash.ChainStateReader)
 
 	// SignData requests the wallet to sign the hash of the given data
 	// It looks up the account specified either solely via its address contained within,
@@ -119,7 +119,7 @@ type Wallet interface {
 	SignDataWithPassphrase(account Account, passphrase, mimeType string, data []byte) ([]byte, error)
 
 	// SignText requests the wallet to sign the hash of a given piece of data, prefixed
-	// by the Ethereum prefix scheme
+	// by the NeroCash prefix scheme
 	// It looks up the account specified either solely via its address contained within,
 	// or optionally with the aid of any location metadata from the embedded URL field.
 	//
@@ -178,7 +178,7 @@ type Backend interface {
 //
 // The hash is calculated as
 //
-//	keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
+//	keccak256("\x19NeroCash Signed Message:\n"${message length}${message}).
 //
 // This gives context to the signed message and prevents signing of transactions.
 func TextHash(data []byte) []byte {
@@ -191,11 +191,11 @@ func TextHash(data []byte) []byte {
 //
 // The hash is calculated as
 //
-//	keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
+//	keccak256("\x19NeroCash Signed Message:\n"${message length}${message}).
 //
 // This gives context to the signed message and prevents signing of transactions.
 func TextAndHash(data []byte) ([]byte, string) {
-	msg := fmt.Sprintf("\x19Ethereum Signed Message:\n%d%s", len(data), string(data))
+	msg := fmt.Sprintf("\x19NeroCash Signed Message:\n%d%s", len(data), string(data))
 	hasher := sha3.NewLegacyKeccak256()
 	hasher.Write([]byte(msg))
 	return hasher.Sum(nil), msg

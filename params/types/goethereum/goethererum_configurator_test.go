@@ -1,4 +1,4 @@
-package goethereum
+package gonerocash
 
 import (
 	"reflect"

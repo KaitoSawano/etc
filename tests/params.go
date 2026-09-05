@@ -133,7 +133,7 @@ func init() {
 	} else if os.Getenv(CG_CHAINCONFIG_CHAINSPECS_COREGETH_KEY) != "" {
 		// This logic reads Forks (used by [General]StateTests) and Difficulty configurations
 		// from their respective coregeth.json.d/<file>.json files.
-		// This implementation differs from that of this scope's predecessor CG_CHAINCONFIG_CHAINSPECS_OPENETHEREUM_KEY
+		// This implementation differs from that of this scope's predecessor CG_CHAINCONFIG_CHAINSPECS_OPENNEROCASH_KEY
 		// because it only replaces Go values when it finds a corresponding configuration file
 		// (it does not demand to replace all available configurations).
 		// This avoids some unnecessary overhead for establishing configurations

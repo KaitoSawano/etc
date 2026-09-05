@@ -29,8 +29,8 @@ import (
 
 // copyConfig does a _shallow_ copy of a given config. Safe to set new values, but
 // do not use e.g. SetInt() on the numbers. For testing only
-func copyConfig(original *goethereum.ChainConfig) *goethereum.ChainConfig {
-	return &goethereum.ChainConfig{
+func copyConfig(original *gonerocash.ChainConfig) *gonerocash.ChainConfig {
+	return &gonerocash.ChainConfig{
 		ChainID:                 original.ChainID,
 		HomesteadBlock:          original.HomesteadBlock,
 		DAOForkBlock:            original.DAOForkBlock,
@@ -52,7 +52,7 @@ func copyConfig(original *goethereum.ChainConfig) *goethereum.ChainConfig {
 	}
 }
 
-func config() *goethereum.ChainConfig {
+func config() *gonerocash.ChainConfig {
 	config := copyConfig(params.TestChainConfig)
 	config.LondonBlock = big.NewInt(5)
 	return config

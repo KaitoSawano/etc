@@ -82,14 +82,14 @@ func testSetupGenesis(t *testing.T, scheme string) {
 	var (
 		customghash = common.HexToHash("0x89c99d90b79719238d2645c7642f2c9295246e80775b38cfd162b696817fbd50")
 		customg     = genesisT.Genesis{
-			Config: &goethereum.ChainConfig{HomesteadBlock: big.NewInt(3)},
+			Config: &gonerocash.ChainConfig{HomesteadBlock: big.NewInt(3)},
 			Alloc: genesisT.GenesisAlloc{
 				{1}: {Balance: big.NewInt(1), Storage: map[common.Hash]common.Hash{{1}: {1}}},
 			},
 		}
 		oldcustomg = customg
 	)
-	oldcustomg.Config = &goethereum.ChainConfig{HomesteadBlock: big.NewInt(2)}
+	oldcustomg.Config = &gonerocash.ChainConfig{HomesteadBlock: big.NewInt(2)}
 	tests := []struct {
 		name       string
 		fn         func(ethdb.Database) (ctypes.ChainConfigurator, common.Hash, error)
@@ -291,7 +291,7 @@ func newDbConfig(scheme string) *triedb.Config {
 
 func TestVerkleGenesisCommit(t *testing.T) {
 	var verkleTime uint64 = 0
-	verkleConfig := &goethereum.ChainConfig{
+	verkleConfig := &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,

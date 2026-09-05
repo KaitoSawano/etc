@@ -118,8 +118,8 @@ var (
 	stateIDPrefix         = []byte("L") // stateIDPrefix + state root -> state id
 
 	PreimagePrefix = []byte("secure-key-")       // PreimagePrefix + hash -> preimage
-	configPrefix   = []byte("ethereum-config-")  // config prefix for the db
-	genesisPrefix  = []byte("ethereum-genesis-") // genesis state prefix for the db
+	configPrefix   = []byte("nerocash-config-")  // config prefix for the db
+	genesisPrefix  = []byte("nerocash-genesis-") // genesis state prefix for the db
 
 	// BloomBitsIndexPrefix is the data table of a chain indexer to track its progress
 	BloomBitsIndexPrefix = []byte("iB")

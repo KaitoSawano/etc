@@ -176,7 +176,7 @@ func benchmarkEVM_Create(bench *testing.B, code string) {
 		Time:        0,
 		Coinbase:    common.Address{},
 		BlockNumber: new(big.Int).SetUint64(1),
-		ChainConfig: &goethereum.ChainConfig{ChainID: big.NewInt(1),
+		ChainConfig: &gonerocash.ChainConfig{ChainID: big.NewInt(1),
 			HomesteadBlock:      new(big.Int),
 			ByzantiumBlock:      new(big.Int),
 			ConstantinopleBlock: new(big.Int),

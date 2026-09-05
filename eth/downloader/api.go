@@ -75,7 +75,7 @@ func (api *DownloaderAPI) eventLoop() {
 		started bool
 		done    bool
 
-		getProgress = func() ethereum.SyncProgress {
+		getProgress = func() nerocash.SyncProgress {
 			prog := api.d.Progress()
 			if txProg, err := api.chain.TxIndexProgress(); err == nil {
 				prog.TxIndexFinishedBlocks = txProg.Indexed
@@ -129,7 +129,7 @@ func (api *DownloaderAPI) eventLoop() {
 	}
 }
 
-// Syncing provides information when this nodes starts synchronising with the Ethereum network and when it's finished.
+// Syncing provides information when this nodes starts synchronising with the NeroCash network and when it's finished.
 func (api *DownloaderAPI) Syncing(ctx context.Context) (*rpc.Subscription, error) {
 	notifier, supported := rpc.NotifierFromContext(ctx)
 	if !supported {
@@ -161,7 +161,7 @@ func (api *DownloaderAPI) Syncing(ctx context.Context) (*rpc.Subscription, error
 // SyncingResult provides information about the current synchronisation status for this node.
 type SyncingResult struct {
 	Syncing bool                  `json:"syncing"`
-	Status  ethereum.SyncProgress `json:"status"`
+	Status  nerocash.SyncProgress `json:"status"`
 }
 
 // uninstallSyncSubscriptionRequest uninstalls a syncing subscription in the API event loop.

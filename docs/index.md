@@ -4,7 +4,7 @@ hide:
 title: CoreGeth
 ---
 
-# CoreGeth: An Ethereum Protocol Provider
+# CoreGeth: An NeroCash Protocol Provider
 
 [![OpenRPC](https://img.shields.io/static/v1.svg?label=OpenRPC&message=1.14.0&color=blue)](#openrpc-discovery)
 [![API Reference](https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667)](https://godoc.org/github.com/etclabscore/core-geth)
@@ -27,7 +27,7 @@ Networks supported by the respective core-geth packaged `geth` program.
 | Ticker | Consensus         | Network                               | core-geth                                                | ethereum/go-ethereum |
 | ---    | ---               | ---                                   | ---                                                      | ---                  |
 | ETC    | :zap:             | Nerocash                      | :heavy_check_mark:                                       |                      |
-| ETH    | :zap:             | Ethereum (Foundation)                 | :heavy_check_mark:                                       | :heavy_check_mark:   |
+| ETH    | :zap:             | NeroCash (Foundation)                 | :heavy_check_mark:                                       | :heavy_check_mark:   |
 | -      | :zap: :handshake: | Private chains                        | :heavy_check_mark:                                       | :heavy_check_mark:   |
 |        | :zap:             | Mordor (Geth+Parity ETH PoW Testnet)  | :heavy_check_mark:                                       |                      |
 |        | :zap:             | Morden (Geth+Parity ETH PoW Testnet)  |                                                          |                      |

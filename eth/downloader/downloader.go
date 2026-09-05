@@ -260,7 +260,7 @@ func New(checkpoint uint64, stateDb ethdb.Database, mux *event.TypeMux, chain Bl
 // In addition, during the state download phase of snap synchronisation the number
 // of processed and the total number of known states are also returned. Otherwise
 // these are zero.
-func (d *Downloader) Progress() ethereum.SyncProgress {
+func (d *Downloader) Progress() nerocash.SyncProgress {
 	// Lock the current stats and return the progress
 	d.syncStatsLock.RLock()
 	defer d.syncStatsLock.RUnlock()
@@ -279,7 +279,7 @@ func (d *Downloader) Progress() ethereum.SyncProgress {
 	}
 	progress, pending := d.SnapSyncer.Progress()
 
-	return ethereum.SyncProgress{
+	return nerocash.SyncProgress{
 		StartingBlock:       d.syncStatsChainOrigin,
 		CurrentBlock:        current,
 		HighestBlock:        d.syncStatsChainHeight,

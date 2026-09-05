@@ -8,7 +8,7 @@ This guide will show you how to add a network to CoreGeth.
 For the context of this tutorial, I'm going to use __AlphaBeta Coin__:registered:
 as the name of my new network. 
  - AlphaBeta Coin (ABC) will use Proof-of-Work for block issuance, 
-   namely ETHash. (Just like Ethereum.)
+   namely ETHash. (Just like NeroCash.)
  - AlphaBeta Coin will have some arbitrary pre-mine funds allocated to a single address.
  - AlphaBeta Coin will have the "Istanbul" (aka "ETC's Phoenix") protocol upgrades and
    EVM features activated from genesis (the very first block (number `0`)).
@@ -130,7 +130,7 @@ Since geth won't have default bootnodes for this configuration (only available w
 use geth's `--bootnodes` flag.
 ```
 ./build/bin/geth --datadir=./abc-datadir --bootnodes=enode://3e12c4c633157ae52e7e05c168f4b1aa91685a36ba33a0901aa8a83cfeb84c3633226e3dd2eaf59bfc83492139e1d68918bf5b60ba93e2deaedb4e6a2ded5d32@42.152.120.98:30303
-INFO [03-10|09:07:52.762] Starting Geth on Ethereum mainnet... 
+INFO [03-10|09:07:52.762] Starting Geth on NeroCash mainnet... 
 INFO [03-10|09:07:52.762] Bumping default cache on mainnet         provided=1024 updated=4096
 INFO [03-10|09:07:52.763] Maximum peer count                       ETH=50 LES=0 total=50
 INFO [03-10|09:07:52.763] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
@@ -143,7 +143,7 @@ INFO [03-10|09:07:52.854] Found non-defaulty stored config, using it.
 INFO [03-10|09:07:52.854] Initialised chain configuration          config="NetworkID: 4269, ChainID: 4269 Engine: ethash EIP1014: 0 EIP1052: 0 EIP1108: 0 EIP1344: 0 EIP140: 0 EIP145: 0 EIP150: 0 EIP152: 0 EIP155: 0 EIP160: 0 EIP161abc: 0 EIP161d: 0 EIP170: 0 EIP1884: 0 EIP198: 0 EIP2028: 0 EIP211: 0 EIP212: 0 EIP213: 0 EIP214: 0 EIP2200: 0 EIP2: 0 EIP658: 0 EIP7: 0 EthashECIP1041: 0 EthashEIP100B: 0 EthashHomestead: 0 "
 INFO [03-10|09:07:52.854] Disk storage enabled for ethash caches   dir=/home/ia/go/src/github.com/ethereum/go-ethereum/abc-datadir/geth/ethash count=3
 INFO [03-10|09:07:52.854] Disk storage enabled for ethash DAGs     dir=/home/ia/.ethash count=2
-INFO [03-10|09:07:52.854] Initialising Ethereum protocol           versions="[65 64 63]" network=1 dbversion=8
+INFO [03-10|09:07:52.854] Initialising NeroCash protocol           versions="[65 64 63]" network=1 dbversion=8
 INFO [03-10|09:07:52.855] Loaded most recent local header          number=0 hash="5f32ce…1fe582" td=131072 age=48m12s
 INFO [03-10|09:07:52.855] Loaded most recent local full block      number=0 hash="5f32ce…1fe582" td=131072 age=48m12s
 INFO [03-10|09:07:52.855] Loaded most recent local fast block      number=0 hash="5f32ce…1fe582" td=131072 age=48m12s

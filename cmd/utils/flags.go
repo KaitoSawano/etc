@@ -153,7 +153,7 @@ var (
 	}
 	EthProtocolsFlag = &cli.StringFlag{
 		Name:     "eth.protocols",
-		Usage:    "Sets the Ethereum Protocol versions (first is primary)",
+		Usage:    "Sets the NeroCash Protocol versions (first is primary)",
 		Category: flags.EthCategory,
 		Value: strings.Join(func() (strings []string) {
 			for _, s := range ethconfig.Defaults.ProtocolVersions {
@@ -169,7 +169,7 @@ var (
 	}
 	MainnetFlag = &cli.BoolFlag{
 		Name:     "mainnet",
-		Usage:    "Ethereum mainnet",
+		Usage:    "NeroCash mainnet",
 		Category: flags.EthCategory,
 	}
 	MintMeFlag = &cli.BoolFlag{
@@ -313,7 +313,7 @@ var (
 	}
 	StateSchemeFlag = &cli.StringFlag{
 		Name:     "state.scheme",
-		Usage:    "Scheme to use for storing ethereum state ('hash' or 'path')",
+		Usage:    "Scheme to use for storing nerocash state ('hash' or 'path')",
 		Category: flags.StateCategory,
 	}
 	StateHistoryFlag = &cli.Uint64Flag{
@@ -2160,7 +2160,7 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 		}
 		cfg.ProtocolVersions = append(cfg.ProtocolVersions, uint(version))
 	}
-	log.Info("Configured Ethereum protocol versions", "capabilities", cfg.ProtocolVersions)
+	log.Info("Configured NeroCash protocol versions", "capabilities", cfg.ProtocolVersions)
 
 	// Set DNS discovery defaults for hard coded networks with DNS defaults.
 	// core-geth: NetworkID is configured several stanzas above, based on the returned genesis GetNetworkID() value.
@@ -2298,21 +2298,21 @@ func SetDNSDiscoveryDefaults(cfg *ethconfig.Config, genesis common.Hash) {
 	}
 }
 
-// RegisterEthService adds an Ethereum client to the stack.
+// RegisterEthService adds an NeroCash client to the stack.
 // The second return value is the full node instance.
-func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (ethapi.Backend, *eth.Ethereum) {
+func RegisterEthService(stack *node.Node, cfg *ethconfig.Config) (ethapi.Backend, *eth.NeroCash) {
 	backend, err := eth.New(stack, cfg)
 	if err != nil {
-		Fatalf("Failed to register the Ethereum service: %v", err)
+		Fatalf("Failed to register the NeroCash service: %v", err)
 	}
 	stack.RegisterAPIs(tracers.APIs(backend.APIBackend))
 	return backend.APIBackend, backend
 }
 
-// RegisterEthStatsService configures the Ethereum Stats daemon and adds it to the node.
+// RegisterEthStatsService configures the NeroCash Stats daemon and adds it to the node.
 func RegisterEthStatsService(stack *node.Node, backend ethapi.Backend, url string) {
 	if err := ethstats.New(stack, backend, backend.Engine(), url); err != nil {
-		Fatalf("Failed to register the Ethereum Stats service: %v", err)
+		Fatalf("Failed to register the NeroCash Stats service: %v", err)
 	}
 }
 
@@ -2337,7 +2337,7 @@ func RegisterFilterAPI(stack *node.Node, backend ethapi.Backend, ethcfg *ethconf
 }
 
 // RegisterFullSyncTester adds the full-sync tester service into node.
-func RegisterFullSyncTester(stack *node.Node, eth *eth.Ethereum, target common.Hash) {
+func RegisterFullSyncTester(stack *node.Node, eth *eth.NeroCash, target common.Hash) {
 	catalyst.RegisterFullSyncTester(stack, eth, target)
 	log.Info("Registered full-sync tester", "hash", target)
 }

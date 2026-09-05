@@ -60,10 +60,10 @@ var (
 // Chain configuration with Cancun enabled.
 //
 // TODO(karalabe): replace with params.MainnetChainConfig after Cancun.
-var testChainConfig *goethereum.ChainConfig
+var testChainConfig *gonerocash.ChainConfig
 
 func init() {
-	testChainConfig = new(goethereum.ChainConfig)
+	testChainConfig = new(gonerocash.ChainConfig)
 	*testChainConfig = *params.MainnetChainConfig
 
 	testChainConfig.CancunTime = new(uint64)

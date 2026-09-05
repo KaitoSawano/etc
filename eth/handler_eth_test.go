@@ -97,8 +97,8 @@ func testForkIDSplit(t *testing.T, protocol uint) {
 	var (
 		engine = ethash.NewFaker()
 
-		configNoFork  = &goethereum.ChainConfig{HomesteadBlock: big.NewInt(1)}
-		configProFork = &goethereum.ChainConfig{
+		configNoFork  = &gonerocash.ChainConfig{HomesteadBlock: big.NewInt(1)}
+		configProFork = &gonerocash.ChainConfig{
 			HomesteadBlock: big.NewInt(1),
 			EIP150Block:    big.NewInt(2),
 			EIP155Block:    big.NewInt(2),

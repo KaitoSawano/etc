@@ -41,7 +41,7 @@ func AsGenericCC(c ctypes.ChainConfigurator) GenericCC {
 }
 
 func (c GenericCC) DAOSupport() bool {
-	if gc, ok := c.ChainConfigurator.(*goethereum.ChainConfig); ok {
+	if gc, ok := c.ChainConfigurator.(*gonerocash.ChainConfig); ok {
 		return gc.DAOForkSupport
 	}
 	if mg, ok := c.ChainConfigurator.(*coregeth.CoreGethChainConfig); ok {
@@ -67,14 +67,14 @@ var (
 	}
 
 	// Fields known to ethereum/go-ethereum.
-	goethereumSchemaSuffice = []string{
+	gonerocashSchemaSuffice = []string{
 		"difficulty",
 		"byzantiumBlock", "config.byzantiumBlock",
 		"chainId", "config.chainId",
 		"homesteadBlock", "config.homesteadBlock",
 	}
 	// Fields unknown to ethereum/go-ethereum.
-	goethereumSchemaMustNot = []string{
+	gonerocashSchemaMustNot = []string{
 		"engine",
 		"genesis.seal",
 		"networkId", "config.networkId",
@@ -88,7 +88,7 @@ func UnmarshalChainConfigurator(input []byte) (ctypes.ChainConfigurator, error) 
 		negates    []string
 	}{
 		{&coregeth.CoreGethChainConfig{}, coregethSchemaSuffice, coregethSchemaMustNot},
-		{&goethereum.ChainConfig{}, goethereumSchemaSuffice, goethereumSchemaMustNot},
+		{&gonerocash.ChainConfig{}, gonerocashSchemaSuffice, gonerocashSchemaMustNot},
 	}
 	for _, c := range cases {
 		ok, err := asMapHasAnyKey(input, c.sufficient)

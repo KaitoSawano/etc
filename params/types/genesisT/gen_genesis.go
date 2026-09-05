@@ -91,8 +91,8 @@ func (g *Genesis) UnmarshalJSON(input []byte) error {
 	switch conf.(type) {
 	case *coregeth.CoreGethChainConfig:
 		dec.Config = &coregeth.CoreGethChainConfig{}
-	case *goethereum.ChainConfig:
-		dec.Config = &goethereum.ChainConfig{}
+	case *gonerocash.ChainConfig:
+		dec.Config = &gonerocash.ChainConfig{}
 	default:
 		panic("unmarshal genesis chain config returned a type not supported by unmarshaling")
 	}

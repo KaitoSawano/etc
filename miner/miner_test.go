@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
 
-// Package miner implements Ethereum block creation and mining.
+// Package miner implements NeroCash block creation and mining.
 package miner
 
 import (
@@ -371,7 +371,7 @@ func createMiner(t *testing.T) (*Miner, *event.TypeMux, func(skipMiner bool)) {
 		Period: chainConfig.GetCliquePeriod(),
 		Epoch:  chainConfig.GetCliqueEpoch(),
 	}, chainDB)
-	// Create Ethereum backend
+	// Create NeroCash backend
 	bc, err := core.NewBlockChain(chainDB, nil, genesis, nil, engine, vm.Config{}, nil, nil)
 	if err != nil {
 		t.Fatalf("can't create new chain %v", err)

@@ -50,7 +50,7 @@ func u64(val uint64) *uint64 { return &val }
 // contain invalid transactions
 func TestStateProcessorErrors(t *testing.T) {
 	var (
-		config = &goethereum.ChainConfig{
+		config = &gonerocash.ChainConfig{
 			ChainID:                       big.NewInt(1),
 			HomesteadBlock:                big.NewInt(0),
 			EIP150Block:                   big.NewInt(0),
@@ -275,7 +275,7 @@ func TestStateProcessorErrors(t *testing.T) {
 		var (
 			db    = rawdb.NewMemoryDatabase()
 			gspec = &genesisT.Genesis{
-				Config: &goethereum.ChainConfig{
+				Config: &gonerocash.ChainConfig{
 					ChainID:             big.NewInt(1),
 					HomesteadBlock:      big.NewInt(0),
 					EIP150Block:         big.NewInt(0),
@@ -367,7 +367,7 @@ func TestStateProcessorErrors(t *testing.T) {
 		var (
 			db    = rawdb.NewMemoryDatabase()
 			gspec = &genesisT.Genesis{
-				Config: &goethereum.ChainConfig{
+				Config: &gonerocash.ChainConfig{
 					ChainID:                       big.NewInt(1),
 					HomesteadBlock:                big.NewInt(0),
 					EIP150Block:                   big.NewInt(0),

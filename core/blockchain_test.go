@@ -1585,7 +1585,7 @@ func testEIP155Transition(t *testing.T, scheme string) {
 		funds      = big.NewInt(1000000000)
 		deleteAddr = common.Address{1}
 		gspec      = &genesisT.Genesis{
-			Config: &goethereum.ChainConfig{
+			Config: &gonerocash.ChainConfig{
 				ChainID:        big.NewInt(1),
 				EIP150Block:    big.NewInt(0),
 				EIP155Block:    big.NewInt(2),
@@ -1662,7 +1662,7 @@ func testEIP155Transition(t *testing.T, scheme string) {
 	}
 
 	// generate an invalid chain id transaction
-	config := &goethereum.ChainConfig{
+	config := &gonerocash.ChainConfig{
 		ChainID:        big.NewInt(2),
 		EIP150Block:    big.NewInt(0),
 		EIP155Block:    big.NewInt(2),
@@ -1702,7 +1702,7 @@ func testEIP161AccountRemoval(t *testing.T, scheme string) {
 		funds   = big.NewInt(1000000000)
 		theAddr = common.Address{1}
 		gspec   = &genesisT.Genesis{
-			Config: &goethereum.ChainConfig{
+			Config: &gonerocash.ChainConfig{
 				ChainID:        big.NewInt(1),
 				HomesteadBlock: new(big.Int),
 				EIP150Block:    new(big.Int),
@@ -3990,7 +3990,7 @@ func TestCreateThenDeletePreByzantium(t *testing.T) {
 	// We use Ropsten chain config instead of Testchain config, this is
 	// deliberate: we want to use pre-byz rules where we have intermediate state roots
 	// between transactions.
-	testCreateThenDelete(t, &goethereum.ChainConfig{
+	testCreateThenDelete(t, &gonerocash.ChainConfig{
 		ChainID:        big.NewInt(3),
 		HomesteadBlock: big.NewInt(0),
 		EIP150Block:    big.NewInt(0),
@@ -4334,11 +4334,11 @@ func TestEIP3651(t *testing.T) {
 		}
 	)
 
-	gspec.Config.(*goethereum.ChainConfig).BerlinBlock = common.Big0
-	gspec.Config.(*goethereum.ChainConfig).LondonBlock = common.Big0
-	gspec.Config.(*goethereum.ChainConfig).TerminalTotalDifficulty = common.Big0
-	gspec.Config.(*goethereum.ChainConfig).TerminalTotalDifficultyPassed = true
-	gspec.Config.(*goethereum.ChainConfig).ShanghaiTime = u64(0)
+	gspec.Config.(*gonerocash.ChainConfig).BerlinBlock = common.Big0
+	gspec.Config.(*gonerocash.ChainConfig).LondonBlock = common.Big0
+	gspec.Config.(*gonerocash.ChainConfig).TerminalTotalDifficulty = common.Big0
+	gspec.Config.(*gonerocash.ChainConfig).TerminalTotalDifficultyPassed = true
+	gspec.Config.(*gonerocash.ChainConfig).ShanghaiTime = u64(0)
 	signer := types.LatestSigner(gspec.Config)
 
 	_, blocks, _ := GenerateChainWithGenesis(gspec, engine, 1, func(i int, b *BlockGen) {

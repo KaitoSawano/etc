@@ -35,14 +35,14 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 )
 
-// DebugAPI is the collection of Ethereum full node APIs for debugging the
+// DebugAPI is the collection of NeroCash full node APIs for debugging the
 // protocol.
 type DebugAPI struct {
-	eth *Ethereum
+	eth *NeroCash
 }
 
 // NewDebugAPI creates a new DebugAPI instance.
-func NewDebugAPI(eth *Ethereum) *DebugAPI {
+func NewDebugAPI(eth *NeroCash) *DebugAPI {
 	return &DebugAPI{eth: eth}
 }
 

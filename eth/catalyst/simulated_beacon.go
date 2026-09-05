@@ -71,7 +71,7 @@ func (w *withdrawalQueue) gatherPending(maxCount int) []*types.Withdrawal {
 
 type SimulatedBeacon struct {
 	shutdownCh  chan struct{}
-	eth         *eth.Ethereum
+	eth         *eth.NeroCash
 	period      uint64
 	withdrawals withdrawalQueue
 
@@ -88,7 +88,7 @@ type SimulatedBeacon struct {
 //
 //   - If period is set to 0, a block is produced on every transaction.
 //     via Commit, Fork and AdjustTime.
-func NewSimulatedBeacon(period uint64, eth *eth.Ethereum) (*SimulatedBeacon, error) {
+func NewSimulatedBeacon(period uint64, eth *eth.NeroCash) (*SimulatedBeacon, error) {
 	block := eth.BlockChain().CurrentBlock()
 	current := engine.ForkchoiceStateV1{
 		HeadBlockHash:      block.Hash(),

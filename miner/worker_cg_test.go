@@ -99,7 +99,7 @@ func TestGenerateBlockAndImport_CG1(t *testing.T) {
 		{
 			name: "eth-dao=true-ethash",
 			conf: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{
+				c := &gonerocash.ChainConfig{
 					NetworkID:               1,
 					ChainID:                 big.NewInt(1),
 					HomesteadBlock:          big.NewInt(1),
@@ -129,7 +129,7 @@ func TestGenerateBlockAndImport_CG1(t *testing.T) {
 		{
 			name: "eth-dao=false-ethash",
 			conf: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{
+				c := &gonerocash.ChainConfig{
 					NetworkID:               1,
 					ChainID:                 big.NewInt(1),
 					HomesteadBlock:          big.NewInt(1),

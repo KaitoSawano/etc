@@ -25,7 +25,7 @@ var (
 			Config: &coregeth.CoreGethChainConfig{},
 		},
 		"geth": &genesisT.Genesis{
-			Config: &goethereum.ChainConfig{},
+			Config: &gonerocash.ChainConfig{},
 		},
 		// "retesteth"
 	}

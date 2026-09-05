@@ -468,7 +468,7 @@ func (b *testBackend) setPendingBlock(block *types.Block) {
 	b.pending = block
 }
 
-func (b testBackend) SyncProgress() ethereum.SyncProgress { return ethereum.SyncProgress{} }
+func (b testBackend) SyncProgress() nerocash.SyncProgress { return nerocash.SyncProgress{} }
 func (b testBackend) SuggestGasTipCap(ctx context.Context) (*big.Int, error) {
 	return big.NewInt(0), nil
 }
@@ -1825,8 +1825,8 @@ func setupReceiptBackend(t *testing.T, genBlocks int) (*testBackend, []common.Ha
 	)
 
 	// Set the terminal total difficulty in the config
-	genesis.Config.(*goethereum.ChainConfig).TerminalTotalDifficulty = big.NewInt(0)
-	genesis.Config.(*goethereum.ChainConfig).TerminalTotalDifficultyPassed = true
+	genesis.Config.(*gonerocash.ChainConfig).TerminalTotalDifficulty = big.NewInt(0)
+	genesis.Config.(*gonerocash.ChainConfig).TerminalTotalDifficultyPassed = true
 	backend := newTestBackend(t, genBlocks, genesis, beacon.New(ethash.NewFaker()), func(i int, b *core.BlockGen) {
 		var (
 			tx  *types.Transaction

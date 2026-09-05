@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the multi-geth library. If not, see <http://www.gnu.org/licenses/>.
 
-package goethereum
+package gonerocash
 
 import (
 	"math/big"
@@ -431,7 +431,7 @@ func (c *ChainConfig) SetEIP1706Transition(n *uint64) error {
 }
 
 // GetEIP2537Transition implements EIP2537.
-// This logic is written but not configured for any Ethereum-supported networks, yet.
+// This logic is written but not configured for any NeroCash-supported networks, yet.
 func (c *ChainConfig) GetEIP2537Transition() *uint64 {
 	return nil
 }
@@ -462,7 +462,7 @@ func (c *ChainConfig) SetECBP1100DeactivateTransition(n *uint64) error {
 }
 
 // GetEIP2315Transition implements EIP2537.
-// This logic is written but not configured for any Ethereum-supported networks, yet.
+// This logic is written but not configured for any NeroCash-supported networks, yet.
 func (c *ChainConfig) GetEIP2315Transition() *uint64 {
 	return nil
 }

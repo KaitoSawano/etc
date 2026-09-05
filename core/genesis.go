@@ -119,7 +119,7 @@ func SetupGenesisBlockWithOverride(db ethdb.Database, triedb *triedb.Database, g
 	if (stored == common.Hash{}) {
 		if genesis == nil {
 			log.Info("Writing default main-net genesis block")
-			log.Warn("Not specifying a chain flag is deprecated and will be removed in the future, please use --mainnet for Ethereum mainnet")
+			log.Warn("Not specifying a chain flag is deprecated and will be removed in the future, please use --mainnet for NeroCash mainnet")
 			genesis = params.DefaultGenesisBlock()
 		} else {
 			log.Info("Writing custom genesis block")
@@ -183,7 +183,7 @@ func SetupGenesisBlockWithOverride(db ethdb.Database, triedb *triedb.Database, g
 	// New logic (below) checks _inequality_ between a defaulty config and a stored config. If different,
 	// the stored config is used. This breaks auto-upgrade magic for defaulty chains.
 	if genesis == nil && !confp.Identical(storedcfg, newcfg, []string{"NetworkID", "ChainID"}) {
-		// TODO/meowsbits/20220405: ethereum code for this scope follows:
+		// TODO/meowsbits/20220405: nerocash code for this scope follows:
 		/*
 				// Special case: if a private network is being used (no genesis and also no
 				// mainnet hash in the database), we must not apply the `configOrDefault`

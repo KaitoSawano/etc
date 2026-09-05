@@ -308,13 +308,13 @@ type BlockSealingT int
 
 const (
 	BlockSealing_Unknown = iota
-	BlockSealing_Ethereum
+	BlockSealing_NeroCash
 )
 
 func (b BlockSealingT) String() string {
 	switch b {
-	case BlockSealing_Ethereum:
-		return "ethereum"
+	case BlockSealing_NeroCash:
+		return "nerocash"
 	default:
 		return "unknown"
 	}

@@ -626,7 +626,7 @@ func NewTester(notify []string, noverify bool) *Ethash {
 }
 
 // NewFaker creates a ethash consensus engine with a fake PoW scheme that accepts
-// all blocks' seal as valid, though they still have to conform to the Ethereum
+// all blocks' seal as valid, though they still have to conform to the NeroCash
 // consensus rules.
 func NewFaker() *Ethash {
 	return &Ethash{
@@ -639,7 +639,7 @@ func NewFaker() *Ethash {
 
 // NewFakeFailer creates a ethash consensus engine with a fake PoW scheme that
 // accepts all blocks as valid apart from the single one specified, though they
-// still have to conform to the Ethereum consensus rules.
+// still have to conform to the NeroCash consensus rules.
 func NewFakeFailer(fail uint64) *Ethash {
 	return &Ethash{
 		config: Config{
@@ -652,7 +652,7 @@ func NewFakeFailer(fail uint64) *Ethash {
 
 // NewFakeDelayer creates a ethash consensus engine with a fake PoW scheme that
 // accepts all blocks as valid, but delays verifications by some time, though
-// they still have to conform to the Ethereum consensus rules.
+// they still have to conform to the NeroCash consensus rules.
 func NewFakeDelayer(delay time.Duration) *Ethash {
 	return &Ethash{
 		config: Config{
@@ -665,7 +665,7 @@ func NewFakeDelayer(delay time.Duration) *Ethash {
 
 // NewPoissonFaker creates a ethash consensus engine with a fake PoW scheme that
 // accepts all blocks as valid, but delays mining by some time based on miner.threads, though
-// they still have to conform to the Ethereum consensus rules.
+// they still have to conform to the NeroCash consensus rules.
 func NewPoissonFaker() *Ethash {
 	return &Ethash{
 		config: Config{

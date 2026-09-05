@@ -82,11 +82,11 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert Ethereum contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert NeroCash contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
-			Description: "Ethereum bootnode.",
+			Description: "NeroCash bootnode.",
 		},
 		{
 			BinaryName:  "echainspec",
@@ -94,11 +94,11 @@ var (
 		},
 		{
 			BinaryName:  "evm",
-			Description: "Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
+			Description: "Developer utility version of the EVM (NeroCash Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
 		},
 		{
 			BinaryName:  "geth",
-			Description: "Ethereum CLI client.",
+			Description: "NeroCash CLI client.",
 		},
 		{
 			BinaryName:  "rlpdump",
@@ -106,20 +106,20 @@ var (
 		},
 		{
 			BinaryName:  "clef",
-			Description: "Ethereum account management tool.",
+			Description: "NeroCash account management tool.",
 		},
 	}
 
 	// A debian package is created for all executables listed here.
-	debEthereum = debPackage{
-		Name:        "ethereum",
+	debNeroCash = debPackage{
+		Name:        "nerocash",
 		Version:     params.Version,
 		Executables: debExecutables,
 	}
 
 	// Debian meta packages to build and push to Ubuntu PPA
 	debPackages = []debPackage{
-		debEthereum,
+		debNeroCash,
 	}
 
 	// Distros for which packages are created.
@@ -524,7 +524,7 @@ func doDocker(cmdline []string) {
 	var (
 		image    = flag.Bool("image", false, `Whether to build and push an arch specific docker image`)
 		manifest = flag.String("manifest", "", `Push a multi-arch docker image for the specified architectures (usually "amd64,arm64")`)
-		upload   = flag.String("upload", "", `Where to upload the docker image (usually "ethereum/client-go")`)
+		upload   = flag.String("upload", "", `Where to upload the docker image (usually "nerocash/client-go")`)
 	)
 	flag.CommandLine.Parse(cmdline)
 
@@ -542,14 +542,14 @@ func doDocker(cmdline []string) {
 		build.MustRun(auther)
 	}
 	// Retrieve the version infos to build and push to the following paths:
-	//  - ethereum/client-go:latest                            - Pushes to the master branch, Geth only
-	//  - ethereum/client-go:stable                            - Version tag publish on GitHub, Geth only
-	//  - ethereum/client-go:alltools-latest                   - Pushes to the master branch, Geth & tools
-	//  - ethereum/client-go:alltools-stable                   - Version tag publish on GitHub, Geth & tools
-	//  - ethereum/client-go:release-<major>.<minor>           - Version tag publish on GitHub, Geth only
-	//  - ethereum/client-go:alltools-release-<major>.<minor>  - Version tag publish on GitHub, Geth & tools
-	//  - ethereum/client-go:v<major>.<minor>.<patch>          - Version tag publish on GitHub, Geth only
-	//  - ethereum/client-go:alltools-v<major>.<minor>.<patch> - Version tag publish on GitHub, Geth & tools
+	//  - nerocash/client-go:latest                            - Pushes to the master branch, Geth only
+	//  - nerocash/client-go:stable                            - Version tag publish on GitHub, Geth only
+	//  - nerocash/client-go:alltools-latest                   - Pushes to the master branch, Geth & tools
+	//  - nerocash/client-go:alltools-stable                   - Version tag publish on GitHub, Geth & tools
+	//  - nerocash/client-go:release-<major>.<minor>           - Version tag publish on GitHub, Geth only
+	//  - nerocash/client-go:alltools-release-<major>.<minor>  - Version tag publish on GitHub, Geth & tools
+	//  - nerocash/client-go:v<major>.<minor>.<patch>          - Version tag publish on GitHub, Geth only
+	//  - nerocash/client-go:alltools-v<major>.<minor>.<patch> - Version tag publish on GitHub, Geth & tools
 	var tags []string
 
 	switch {
@@ -690,7 +690,7 @@ func doDebianSource(cmdline []string) {
 	var (
 		cachedir = flag.String("cachedir", "./build/cache", `Filesystem path to cache the downloaded Go bundles at`)
 		signer   = flag.String("signer", "", `Signing key name, also used as package author`)
-		upload   = flag.String("upload", "", `Where to upload the source package (usually "ethereum/ethereum")`)
+		upload   = flag.String("upload", "", `Where to upload the source package (usually "nerocash/nerocash")`)
 		sshUser  = flag.String("sftp-user", "", `Username for SFTP upload (usually "geth-ci")`)
 		workdir  = flag.String("workdir", "", `Output directory for packages (uses temp dir if unset)`)
 		now      = time.Now()
@@ -855,7 +855,7 @@ func isUnstableBuild(env build.Environment) bool {
 }
 
 type debPackage struct {
-	Name        string          // the name of the Debian package to produce, e.g. "ethereum"
+	Name        string          // the name of the Debian package to produce, e.g. "nerocash"
 	Version     string          // the clean version of the debPackage, e.g. 1.8.12, without any metadata
 	Executables []debExecutable // executables to be included in the package
 }
@@ -960,7 +960,7 @@ func (meta debMetadata) ExeConflicts(exe debExecutable) string {
 		// be preferred and the conflicting files should be handled via
 		// alternates. We might do this eventually but using a conflict is
 		// easier now.
-		return "ethereum, " + exe.Package()
+		return "nerocash, " + exe.Package()
 	}
 	return ""
 }

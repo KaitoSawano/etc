@@ -636,7 +636,7 @@ func TestTimeBasedForkInGenesis(t *testing.T) {
 		genesis    = types.NewBlockWithHeader(&types.Header{Time: time})
 		forkidHash = checksumToBytes(crc32.ChecksumIEEE(genesis.Hash().Bytes()))
 		config     = func(shanghai, cancun uint64) ctypes.ChainConfigurator {
-			return &goethereum.ChainConfig{
+			return &gonerocash.ChainConfig{
 				ChainID:                       big.NewInt(1337),
 				HomesteadBlock:                big.NewInt(0),
 				DAOForkBlock:                  nil,

@@ -60,7 +60,7 @@ const (
 var syncChallengeTimeout = 15 * time.Second // Time allowance for a node to reply to the sync progress challenge
 
 // txPool defines the methods needed from a transaction pool implementation to
-// support all the operations needed by the Ethereum chain protocols.
+// support all the operations needed by the NeroCash chain protocols.
 type txPool interface {
 	// Has returns an indicator whether txpool has a transaction
 	// cached with the given hash.
@@ -136,7 +136,7 @@ type handler struct {
 	handlerDoneCh  chan struct{}
 }
 
-// newHandler returns a handler for all Ethereum chain management protocol.
+// newHandler returns a handler for all NeroCash chain management protocol.
 func newHandler(config *handlerConfig) (*handler, error) {
 	// Create the protocol manager with the base fields
 	if config.EventMux == nil {
@@ -364,7 +364,7 @@ func (h *handler) runEthPeer(peer *eth.Peer, handler eth.Handler) error {
 		return err
 	}
 
-	// Execute the Ethereum handshake
+	// Execute the NeroCash handshake
 	var (
 		genesis = h.chain.Genesis()
 		head    = h.chain.CurrentHeader()
@@ -374,7 +374,7 @@ func (h *handler) runEthPeer(peer *eth.Peer, handler eth.Handler) error {
 	)
 	forkID := forkid.NewID(h.chain.Config(), genesis, number, head.Time)
 	if err := peer.Handshake(h.networkID, td, hash, genesis.Hash(), forkID, h.forkFilter); err != nil {
-		peer.Log().Debug("Ethereum handshake failed", "err", err)
+		peer.Log().Debug("NeroCash handshake failed", "err", err)
 		return err
 	}
 	reject := false // reserved peer slots
@@ -394,11 +394,11 @@ func (h *handler) runEthPeer(peer *eth.Peer, handler eth.Handler) error {
 			return p2p.DiscTooManyPeers
 		}
 	}
-	peer.Log().Debug("Ethereum peer connected", "name", peer.Name())
+	peer.Log().Debug("NeroCash peer connected", "name", peer.Name())
 
 	// Register the peer locally
 	if err := h.peers.registerPeer(peer, snap); err != nil {
-		peer.Log().Error("Ethereum peer registration failed", "err", err)
+		peer.Log().Error("NeroCash peer registration failed", "err", err)
 		return err
 	}
 	defer h.unregisterPeer(peer.ID())
@@ -571,11 +571,11 @@ func (h *handler) unregisterPeer(id string) {
 	// Abort if the peer does not exist
 	peer := h.peers.peer(id)
 	if peer == nil {
-		logger.Error("Ethereum peer removal failed", "err", errPeerNotRegistered)
+		logger.Error("NeroCash peer removal failed", "err", errPeerNotRegistered)
 		return
 	}
 	// Remove the `eth` peer if it exists
-	logger.Debug("Removing Ethereum peer", "snap", peer.snapExt != nil)
+	logger.Debug("Removing NeroCash peer", "snap", peer.snapExt != nil)
 
 	// Remove the `snap` extension if it exists
 	if peer.snapExt != nil {
@@ -585,7 +585,7 @@ func (h *handler) unregisterPeer(id string) {
 	h.txFetcher.Drop(id)
 
 	if err := h.peers.unregisterPeer(id); err != nil {
-		logger.Error("Ethereum peer removal failed", "err", err)
+		logger.Error("NeroCash peer removal failed", "err", err)
 	}
 }
 
@@ -631,7 +631,7 @@ func (h *handler) Stop() {
 	h.peers.close()
 	h.wg.Wait()
 
-	log.Info("Ethereum protocol stopped")
+	log.Info("NeroCash protocol stopped")
 }
 
 // BroadcastBlock will either propagate a block to a subset of its peers, or

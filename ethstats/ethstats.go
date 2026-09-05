@@ -68,7 +68,7 @@ type backend interface {
 	HeaderByNumber(ctx context.Context, number rpc.BlockNumber) (*types.Header, error)
 	GetTd(ctx context.Context, hash common.Hash) *big.Int
 	Stats() (pending int, queued int)
-	SyncProgress() ethereum.SyncProgress
+	SyncProgress() nerocash.SyncProgress
 }
 
 // fullNodeBackend encompasses the functionality necessary for a full node
@@ -87,7 +87,7 @@ type miningNodeBackend interface {
 	Miner() *miner.Miner
 }
 
-// Service implements an Ethereum netstats reporting daemon that pushes local
+// Service implements an NeroCash netstats reporting daemon that pushes local
 // chain statistics up to a monitoring server.
 type Service struct {
 	server  *p2p.Server // Peer-to-peer server to retrieve networking infos

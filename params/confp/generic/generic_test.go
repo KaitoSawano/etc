@@ -18,7 +18,7 @@ func TestUnmarshalChainConfigurator(t *testing.T) {
 	}{
 		{
 			filepath.Join("..", "testdata", "geth_foundation.json"),
-			&goethereum.ChainConfig{},
+			&gonerocash.ChainConfig{},
 		},
 		{
 			filepath.Join("..", "testdata", "coregeth_foundation.json"),

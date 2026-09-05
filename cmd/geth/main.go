@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// geth is a command-line client for Ethereum.
+// geth is a command-line client for NeroCash.
 package main
 
 import (
@@ -357,7 +357,7 @@ func checkMainnet(ctx *cli.Context) bool {
 		log.Info("Starting Geth on MintMe.com Coin mainnet...")
 
 	case !ctx.IsSet(utils.NetworkIdFlag.Name):
-		log.Info("Starting Geth on Ethereum mainnet...")
+		log.Info("Starting Geth on NeroCash mainnet...")
 		isMainnet = true
 	}
 
@@ -485,13 +485,13 @@ func startNode(ctx *cli.Context, stack *node.Node, backend ethapi.Backend, isCon
 	// Start auxiliary services if enabled
 	isDeveloperMode := ctx.Bool(utils.DeveloperFlag.Name) || ctx.Bool(utils.DeveloperPoWFlag.Name)
 	if ctx.Bool(utils.MiningEnabledFlag.Name) || isDeveloperMode {
-		// Mining only makes sense if a full Ethereum node is running
+		// Mining only makes sense if a full NeroCash node is running
 		if ctx.String(utils.SyncModeFlag.Name) == "light" {
 			utils.Fatalf("Light clients do not support mining")
 		}
 		ethBackend, ok := backend.(*eth.EthAPIBackend)
 		if !ok {
-			utils.Fatalf("Ethereum service not running")
+			utils.Fatalf("NeroCash service not running")
 		}
 		// Set the gas price to the limits from the CLI and start mining
 		gasprice := flags.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)

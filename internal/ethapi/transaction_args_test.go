@@ -262,7 +262,7 @@ type backendMock struct {
 
 func newBackendMock() *backendMock {
 	var cancunTime uint64 = 600
-	config := &goethereum.ChainConfig{
+	config := &gonerocash.ChainConfig{
 		ChainID:             big.NewInt(42),
 		HomesteadBlock:      big.NewInt(0),
 		DAOForkBlock:        nil,
@@ -319,7 +319,7 @@ func (b *backendMock) CurrentHeader() *types.Header          { return b.current 
 func (b *backendMock) ChainConfig() ctypes.ChainConfigurator { return b.config }
 
 // Other methods needed to implement Backend interface.
-func (b *backendMock) SyncProgress() ethereum.SyncProgress { return ethereum.SyncProgress{} }
+func (b *backendMock) SyncProgress() nerocash.SyncProgress { return nerocash.SyncProgress{} }
 func (b *backendMock) FeeHistory(ctx context.Context, blockCount uint64, lastBlock rpc.BlockNumber, rewardPercentiles []float64) (*big.Int, [][]*big.Int, []*big.Int, []float64, error) {
 	return nil, nil, nil, nil, nil
 }

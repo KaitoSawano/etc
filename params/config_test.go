@@ -52,15 +52,15 @@ func TestCheckCompatible(t *testing.T) {
 		{stored: AllEthashProtocolChanges, new: AllEthashProtocolChanges, headBlock: 0, headTimestamp: uint64(time.Now().Unix()), wantErr: nil},
 		{stored: AllEthashProtocolChanges, new: AllEthashProtocolChanges, headBlock: 100, wantErr: nil},
 		{
-			stored:    &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), EIP150Block: big.NewInt(10)},
-			new:       &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), EIP150Block: big.NewInt(20)},
+			stored:    &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), EIP150Block: big.NewInt(10)},
+			new:       &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), EIP150Block: big.NewInt(20)},
 			headBlock: 9,
 			wantErr:   nil,
 		},
 		// case index 4
 		{
 			stored:    AllEthashProtocolChanges,
-			new:       &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: nil},
+			new:       &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: nil},
 			headBlock: 3,
 			wantErr: &confp.ConfigCompatError{
 				What:          "Homestead fork block",
@@ -72,7 +72,7 @@ func TestCheckCompatible(t *testing.T) {
 		// 5
 		{
 			stored:    AllEthashProtocolChanges,
-			new:       &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(1)},
+			new:       &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(1)},
 			headBlock: 3,
 			wantErr: &confp.ConfigCompatError{
 				What:          "Homestead fork block",
@@ -85,8 +85,8 @@ func TestCheckCompatible(t *testing.T) {
 		// Want the EIP150 block error because it is below the head block AND below the Homestead blocks.
 		// The compat error should always be the earliest fork block incompatibility.
 		{
-			stored:    &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(30), EIP150Block: big.NewInt(10)},
-			new:       &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(25), EIP150Block: big.NewInt(20)},
+			stored:    &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(30), EIP150Block: big.NewInt(10)},
+			new:       &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), HomesteadBlock: big.NewInt(25), EIP150Block: big.NewInt(20)},
 			headBlock: 25,
 			wantErr: &confp.ConfigCompatError{
 				What:          "EIP150 fork block",
@@ -109,14 +109,14 @@ func TestCheckCompatible(t *testing.T) {
 		},
 		// 8
 		{
-			stored:    &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), ByzantiumBlock: big.NewInt(30)},
+			stored:    &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), ByzantiumBlock: big.NewInt(30)},
 			new:       &coregeth.CoreGethChainConfig{Ethash: new(ctypes.EthashConfig), EIP211FBlock: big.NewInt(26)},
 			headBlock: 25,
 			wantErr:   nil,
 		},
 		// 9
 		{
-			stored:    &goethereum.ChainConfig{Ethash: new(ctypes.EthashConfig), ByzantiumBlock: big.NewInt(30)},
+			stored:    &gonerocash.ChainConfig{Ethash: new(ctypes.EthashConfig), ByzantiumBlock: big.NewInt(30)},
 			new:       &coregeth.CoreGethChainConfig{Ethash: new(ctypes.EthashConfig), EIP100FBlock: big.NewInt(26), EIP649FBlock: big.NewInt(26)},
 			headBlock: 25,
 			wantErr:   nil,
@@ -125,7 +125,7 @@ func TestCheckCompatible(t *testing.T) {
 		{
 			stored: MainnetChainConfig,
 			new: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{}
+				c := &gonerocash.ChainConfig{}
 				if err := confp.Crush(c, MainnetChainConfig, true); err != nil {
 					panic(err)
 				}
@@ -143,7 +143,7 @@ func TestCheckCompatible(t *testing.T) {
 		{
 			stored: MainnetChainConfig,
 			new: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{}
+				c := &gonerocash.ChainConfig{}
 				confp.Crush(c, MainnetChainConfig, true)
 				c.SetEthashEIP779Transition(nil)
 				return c
@@ -159,7 +159,7 @@ func TestCheckCompatible(t *testing.T) {
 		{
 			stored: MainnetChainConfig,
 			new: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{}
+				c := &gonerocash.ChainConfig{}
 				*c = *MainnetChainConfig
 				c.SetChainID(new(big.Int).Sub(MainnetChainConfig.EIP155Block, common.Big1))
 				return c
@@ -174,7 +174,7 @@ func TestCheckCompatible(t *testing.T) {
 		},
 		{
 			stored: func() ctypes.ChainConfigurator {
-				c := &goethereum.ChainConfig{
+				c := &gonerocash.ChainConfig{
 					Ethash:         new(ctypes.EthashConfig),
 					DAOForkBlock:   big.NewInt(3),
 					DAOForkSupport: false,
@@ -247,14 +247,14 @@ func TestCheckCompatible(t *testing.T) {
 		// Are the configs equivalent? No. Do we have any observables in place to ensure that the chain data will not be
 		// retroactively corrupted? No.
 		// {
-		// 	stored:  &goethereum.ChainConfig{ConstantinopleBlock: big.NewInt(30)},
-		// 	new:     &goethereum.ChainConfig{ConstantinopleBlock: big.NewInt(30), PetersburgBlock: big.NewInt(30)},
+		// 	stored:  &gonerocash.ChainConfig{ConstantinopleBlock: big.NewInt(30)},
+		// 	new:     &gonerocash.ChainConfig{ConstantinopleBlock: big.NewInt(30), PetersburgBlock: big.NewInt(30)},
 		// 	headBlock:    40,
 		// 	wantErr: nil,
 		// },
 		{
-			stored:    &goethereum.ChainConfig{ConstantinopleBlock: big.NewInt(30)},
-			new:       &goethereum.ChainConfig{ConstantinopleBlock: big.NewInt(30), PetersburgBlock: big.NewInt(31)},
+			stored:    &gonerocash.ChainConfig{ConstantinopleBlock: big.NewInt(30)},
+			new:       &gonerocash.ChainConfig{ConstantinopleBlock: big.NewInt(30), PetersburgBlock: big.NewInt(31)},
 			headBlock: 40,
 			wantErr: &confp.ConfigCompatError{
 				What:          "Petersburg fork block",

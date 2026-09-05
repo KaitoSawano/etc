@@ -432,7 +432,7 @@ type SyncPeer interface {
 	Log() log.Logger
 }
 
-// Syncer is an Ethereum account and storage trie syncer based on snapshots and
+// Syncer is an NeroCash account and storage trie syncer based on snapshots and
 // the  snap protocol. It's purpose is to download all the accounts and storage
 // slots from remote peers and reassemble chunks of the state trie, on top of
 // which a state sync can be run to fix any gaps / overlaps.
@@ -511,7 +511,7 @@ type Syncer struct {
 	lock sync.RWMutex   // Protects fields that can change outside of sync (peers, reqs, root)
 }
 
-// NewSyncer creates a new snapshot syncer to download the Ethereum state over the
+// NewSyncer creates a new snapshot syncer to download the NeroCash state over the
 // snap protocol.
 func NewSyncer(db ethdb.KeyValueStore, scheme string) *Syncer {
 	return &Syncer{
@@ -1955,7 +1955,7 @@ func (s *Syncer) processAccountResponse(res *accountResponse) {
 	}
 	// Delete any subtasks that have been aborted but not resumed. It's essential
 	// as the corresponding contract might be self-destructed in this cycle(it's
-	// no longer possible in ethereum as self-destruction is disabled in Cancun
+	// no longer possible in nerocash as self-destruction is disabled in Cancun
 	// Fork, but the condition is still necessary for other networks).
 	//
 	// Keep the leftover storage tasks if they are not covered by the responded
@@ -1970,7 +1970,7 @@ func (s *Syncer) processAccountResponse(res *accountResponse) {
 				continue
 			}
 			// TODO(rjl493456442) degrade the log level before merging.
-			// It should never happen in ethereum.
+			// It should never happen in nerocash.
 			if _, ok := resumed[hash]; !ok {
 				log.Error("Aborting suspended storage retrieval", "account", hash)
 				delete(res.task.SubTasks, hash)

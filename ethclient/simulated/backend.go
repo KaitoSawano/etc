@@ -34,22 +34,22 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 )
 
-// Client exposes the methods provided by the Ethereum RPC client.
+// Client exposes the methods provided by the NeroCash RPC client.
 type Client interface {
-	ethereum.BlockNumberReader
-	ethereum.ChainReader
-	ethereum.ChainStateReader
-	ethereum.ContractCaller
-	ethereum.GasEstimator
-	ethereum.GasPricer
-	ethereum.GasPricer1559
-	ethereum.FeeHistoryReader
-	ethereum.LogFilterer
-	ethereum.PendingStateReader
-	ethereum.PendingContractCaller
-	ethereum.TransactionReader
-	ethereum.TransactionSender
-	ethereum.ChainIDReader
+	nerocash.BlockNumberReader
+	nerocash.ChainReader
+	nerocash.ChainStateReader
+	nerocash.ContractCaller
+	nerocash.GasEstimator
+	nerocash.GasPricer
+	nerocash.GasPricer1559
+	nerocash.FeeHistoryReader
+	nerocash.LogFilterer
+	nerocash.PendingStateReader
+	nerocash.PendingContractCaller
+	nerocash.TransactionReader
+	nerocash.TransactionSender
+	nerocash.ChainIDReader
 }
 
 // simClient wraps ethclient. This exists to prevent extracting ethclient.Client
@@ -59,9 +59,9 @@ type simClient struct {
 }
 
 // Backend is a simulated blockchain. You can use it to test your contracts or
-// other code that interacts with the Ethereum chain.
+// other code that interacts with the NeroCash chain.
 type Backend struct {
-	eth    *eth.Ethereum
+	eth    *eth.NeroCash
 	beacon *catalyst.SimulatedBeacon
 	client simClient
 }
@@ -71,7 +71,7 @@ type Backend struct {
 //
 // A simulated backend always uses chainID 1337.
 func NewBackend(alloc genesisT.GenesisAlloc, options ...func(nodeConf *node.Config, ethConf *ethconfig.Config)) *Backend {
-	// Create the default configurations for the outer node shell and the Ethereum
+	// Create the default configurations for the outer node shell and the NeroCash
 	// service to mutate with the options afterwards
 	nodeConf := node.DefaultConfig
 	nodeConf.DataDir = ""
@@ -89,7 +89,7 @@ func NewBackend(alloc genesisT.GenesisAlloc, options ...func(nodeConf *node.Conf
 	for _, option := range options {
 		option(&nodeConf, &ethConf)
 	}
-	// Assemble the Ethereum stack to run the chain with
+	// Assemble the NeroCash stack to run the chain with
 	stack, err := node.New(&nodeConf)
 	if err != nil {
 		panic(err) // this should never happen

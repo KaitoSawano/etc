@@ -420,30 +420,30 @@ func DecodePreAlloc(data string) GenesisAlloc {
 // Following methods implement the ctypes.GenesisBlocker interface.
 
 func (g *Genesis) GetSealingType() ctypes.BlockSealingT {
-	return ctypes.BlockSealing_Ethereum
+	return ctypes.BlockSealing_NeroCash
 }
 
 func (g *Genesis) SetSealingType(t ctypes.BlockSealingT) error {
-	if t != ctypes.BlockSealing_Ethereum {
+	if t != ctypes.BlockSealing_NeroCash {
 		return ctypes.ErrUnsupportedConfigFatal
 	}
 	return nil
 }
 
-func (g *Genesis) GetGenesisSealerEthereumNonce() uint64 {
+func (g *Genesis) GetGenesisSealerNeroCashNonce() uint64 {
 	return g.Nonce
 }
 
-func (g *Genesis) SetGenesisSealerEthereumNonce(n uint64) error {
+func (g *Genesis) SetGenesisSealerNeroCashNonce(n uint64) error {
 	g.Nonce = n
 	return nil
 }
 
-func (g *Genesis) GetGenesisSealerEthereumMixHash() common.Hash {
+func (g *Genesis) GetGenesisSealerNeroCashMixHash() common.Hash {
 	return g.Mixhash
 }
 
-func (g *Genesis) SetGenesisSealerEthereumMixHash(h common.Hash) error {
+func (g *Genesis) SetGenesisSealerNeroCashMixHash(h common.Hash) error {
 	g.Mixhash = h
 	return nil
 }

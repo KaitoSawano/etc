@@ -27,7 +27,7 @@ type journalEntry interface {
 	// revert undoes the changes introduced by this journal entry.
 	revert(*StateDB)
 
-	// dirtied returns the Ethereum address modified by this journal entry.
+	// dirtied returns the NeroCash address modified by this journal entry.
 	dirtied() *common.Address
 }
 

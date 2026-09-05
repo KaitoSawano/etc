@@ -376,14 +376,14 @@ type Lyra2Configurator interface {
 type BlockSealer interface {
 	GetSealingType() BlockSealingT
 	SetSealingType(t BlockSealingT) error
-	BlockSealerEthereum
+	BlockSealerNeroCash
 }
 
-type BlockSealerEthereum interface {
-	GetGenesisSealerEthereumNonce() uint64
-	SetGenesisSealerEthereumNonce(n uint64) error
-	GetGenesisSealerEthereumMixHash() common.Hash
-	SetGenesisSealerEthereumMixHash(h common.Hash) error
+type BlockSealerNeroCash interface {
+	GetGenesisSealerNeroCashNonce() uint64
+	SetGenesisSealerNeroCashNonce(n uint64) error
+	GetGenesisSealerNeroCashMixHash() common.Hash
+	SetGenesisSealerNeroCashMixHash(h common.Hash) error
 }
 
 type GenesisBlocker interface {

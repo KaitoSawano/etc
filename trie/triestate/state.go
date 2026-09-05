@@ -29,7 +29,7 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
-// Trie is an Ethereum state trie, can be implemented by Ethereum Merkle Patricia
+// Trie is an NeroCash state trie, can be implemented by NeroCash Merkle Patricia
 // tree or Verkle tree.
 type Trie interface {
 	// Get returns the value for key stored in the trie.

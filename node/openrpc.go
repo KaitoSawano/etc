@@ -121,8 +121,8 @@ func eligibleReturnSignature(method reflect.Method) bool {
 func newOpenRPCDocument() *go_openrpc_reflect.Document {
 	d := &go_openrpc_reflect.Document{}
 
-	// Use a provided Ethereum default configuration as a base.
-	appReflector := &go_openrpc_reflect.EthereumReflectorT{}
+	// Use a provided NeroCash default configuration as a base.
+	appReflector := &go_openrpc_reflect.NeroCashReflectorT{}
 
 	// Install overrides for the json schema->type map fn used by the jsonschema reflect package.
 	appReflector.FnSchemaTypeMap = func() func(ty reflect.Type) *jsonschema.Type {
@@ -142,7 +142,7 @@ func newOpenRPCDocument() *go_openrpc_reflect.Document {
 		// This pattern matches all strings that start with Subscribe and are suffixed with a non-zero
 		// number of A-z characters.
 		pkgStr := method.Type.In(0).String()
-		if isPubSub(method.Type) && pkgStr == "*eth.PublicEthereumAPI" {
+		if isPubSub(method.Type) && pkgStr == "*eth.PublicNeroCashAPI" {
 			// This catches MOST of them (except SubscribeSyncStatus)
 			return false
 		}
@@ -186,7 +186,7 @@ func newOpenRPCDocument() *go_openrpc_reflect.Document {
 		}
 
 		// Otherwise return the default.
-		return go_openrpc_reflect.EthereumReflector.GetContentDescriptorRequired(r, m, field)
+		return go_openrpc_reflect.NeroCashReflector.GetContentDescriptorRequired(r, m, field)
 	}
 
 	appReflector.FnGetMethodExternalDocs = func(r reflect.Value, m reflect.Method, funcDecl *ast.FuncDecl) (*meta_schema.ExternalDocumentationObject, error) {

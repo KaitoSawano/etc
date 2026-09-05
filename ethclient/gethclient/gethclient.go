@@ -35,7 +35,7 @@ import (
 
 // Client is a wrapper around rpc.Client that implements geth-specific functionality.
 //
-// If you want to use the standardized Ethereum RPC functionality, use ethclient.Client instead.
+// If you want to use the standardized NeroCash RPC functionality, use ethclient.Client instead.
 type Client struct {
 	c *rpc.Client
 }
@@ -47,7 +47,7 @@ func New(c *rpc.Client) *Client {
 
 // CreateAccessList tries to create an access list for a specific transaction based on the
 // current pending state of the blockchain.
-func (ec *Client) CreateAccessList(ctx context.Context, msg ethereum.CallMsg) (*types.AccessList, uint64, string, error) {
+func (ec *Client) CreateAccessList(ctx context.Context, msg nerocash.CallMsg) (*types.AccessList, uint64, string, error) {
 	type accessListResult struct {
 		Accesslist *types.AccessList `json:"accessList"`
 		Error      string            `json:"error,omitempty"`
@@ -135,7 +135,7 @@ func (ec *Client) GetProof(ctx context.Context, account common.Address, keys []s
 // overrides specifies a map of contract states that should be overwritten before executing
 // the message call.
 // Please use ethclient.CallContract instead if you don't need the override functionality.
-func (ec *Client) CallContract(ctx context.Context, msg ethereum.CallMsg, blockNumber *big.Int, overrides *map[common.Address]OverrideAccount) ([]byte, error) {
+func (ec *Client) CallContract(ctx context.Context, msg nerocash.CallMsg, blockNumber *big.Int, overrides *map[common.Address]OverrideAccount) ([]byte, error) {
 	var hex hexutil.Bytes
 	err := ec.c.CallContext(
 		ctx, &hex, "eth_call", toCallArg(msg),
@@ -157,7 +157,7 @@ func (ec *Client) CallContract(ctx context.Context, msg ethereum.CallMsg, blockN
 // blockOverrides specifies block fields exposed to the EVM that can be overridden for the call.
 //
 // Please use ethclient.CallContract instead if you don't need the override functionality.
-func (ec *Client) CallContractWithBlockOverrides(ctx context.Context, msg ethereum.CallMsg, blockNumber *big.Int, overrides *map[common.Address]OverrideAccount, blockOverrides BlockOverrides) ([]byte, error) {
+func (ec *Client) CallContractWithBlockOverrides(ctx context.Context, msg nerocash.CallMsg, blockNumber *big.Int, overrides *map[common.Address]OverrideAccount, blockOverrides BlockOverrides) ([]byte, error) {
 	var hex hexutil.Bytes
 	err := ec.c.CallContext(
 		ctx, &hex, "eth_call", toCallArg(msg),
@@ -219,7 +219,7 @@ func toBlockNumArg(number *big.Int) string {
 	return fmt.Sprintf("<invalid %d>", number)
 }
 
-func toCallArg(msg ethereum.CallMsg) interface{} {
+func toCallArg(msg nerocash.CallMsg) interface{} {
 	arg := map[string]interface{}{
 		"from": msg.From,
 		"to":   msg.To,

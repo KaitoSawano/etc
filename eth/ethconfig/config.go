@@ -53,7 +53,7 @@ var FullNodeGPO = gasprice.Config{
 	IgnorePrice:      gasprice.DefaultIgnorePrice,
 }
 
-// Defaults contains default settings for use on the Ethereum main net.
+// Defaults contains default settings for use on the NeroCash main net.
 var Defaults = Config{
 	SyncMode: downloader.SnapSync,
 	Ethash: ethash.Config{
@@ -113,7 +113,7 @@ func init() {
 // Config contains configuration options for ETH and LES protocols.
 type Config struct {
 	// The genesis block, which is inserted if the database is empty.
-	// If nil, the Ethereum main net block is used.
+	// If nil, the NeroCash main net block is used.
 	Genesis *genesisT.Genesis `toml:",omitempty"`
 
 	// Protocol options
@@ -134,7 +134,7 @@ type Config struct {
 	TransactionHistory uint64 `toml:",omitempty"` // The maximum number of blocks from head whose tx indices are reserved.
 	StateHistory       uint64 `toml:",omitempty"` // The maximum number of blocks from head whose state histories are reserved.
 
-	// State scheme represents the scheme used to store ethereum states and trie
+	// State scheme represents the scheme used to store nerocash states and trie
 	// nodes on top. It can be 'hash', 'path', or none which means use the scheme
 	// consistent with persistent state.
 	StateScheme string `toml:",omitempty"`

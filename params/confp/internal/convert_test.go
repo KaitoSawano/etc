@@ -55,7 +55,7 @@ func Test_UnmarshalJSON(t *testing.T) {
 			if c.Config.GetChainID().Cmp(big.NewInt(1)) != 0 {
 				t.Errorf("go-ethereum: wrong chainid")
 			}
-			if _, ok := c.Config.(*goethereum.ChainConfig); !ok {
+			if _, ok := c.Config.(*gonerocash.ChainConfig); !ok {
 				t.Errorf("go-ethereum: wrong type")
 			}
 		case "coregeth":
@@ -97,10 +97,10 @@ func testCrush(t *testing.T, aType string, a, b ctypes.ChainConfigurator) {
 }
 
 func TestCrush(t *testing.T) {
-	testCrush(t, "geth", &goethereum.ChainConfig{}, &goethereum.ChainConfig{})
+	testCrush(t, "geth", &gonerocash.ChainConfig{}, &gonerocash.ChainConfig{})
 	testCrush(t, "coregeth", &coregeth.CoreGethChainConfig{}, &coregeth.CoreGethChainConfig{})
-	testCrush(t, "geth", &goethereum.ChainConfig{}, &coregeth.CoreGethChainConfig{})
-	testCrush(t, "coregeth", &coregeth.CoreGethChainConfig{}, &goethereum.ChainConfig{})
+	testCrush(t, "geth", &gonerocash.ChainConfig{}, &coregeth.CoreGethChainConfig{})
+	testCrush(t, "coregeth", &coregeth.CoreGethChainConfig{}, &gonerocash.ChainConfig{})
 }
 
 func TestCrush_SkipZeroValues(t *testing.T) {
@@ -163,7 +163,7 @@ func TestIdentical(t *testing.T) {
 	}
 	configs := []ctypes.ChainConfigurator{
 		&coregeth.CoreGethChainConfig{},
-		&goethereum.ChainConfig{},
+		&gonerocash.ChainConfig{},
 		&coregeth.CoreGethChainConfig{}, // Complete combination test set.
 	}
 	for i := range configs {
@@ -190,7 +190,7 @@ func TestIdentical(t *testing.T) {
 // to fulfil certain interfaces do fill them.
 func TestConfiguratorImplementationsSatisfied(t *testing.T) {
 	for _, ty := range []interface{}{
-		&goethereum.ChainConfig{},
+		&gonerocash.ChainConfig{},
 		&coregeth.CoreGethChainConfig{},
 	} {
 		_ = ty.(ctypes.ChainConfigurator)
@@ -204,7 +204,7 @@ func TestConfiguratorImplementationsSatisfied(t *testing.T) {
 }
 
 func TestCompatible(t *testing.T) {
-	spec := &goethereum.ChainConfig{}
+	spec := &gonerocash.ChainConfig{}
 	fns, names := confp.Transitions(spec)
 	for i, fn := range fns {
 		t.Log(names[i], fn())
@@ -235,7 +235,7 @@ func TestCloneChainConfigurator(t *testing.T) {
 			if c.Config.GetChainID().Cmp(big.NewInt(1)) != 0 {
 				t.Errorf("go-ethereum: wrong chainid")
 			}
-			if _, ok := c.Config.(*goethereum.ChainConfig); !ok {
+			if _, ok := c.Config.(*gonerocash.ChainConfig); !ok {
 				t.Errorf("go-ethereum: wrong type")
 			}
 			cloned, err := confp.CloneChainConfigurator(c.Config)

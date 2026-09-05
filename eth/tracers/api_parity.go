@@ -88,14 +88,14 @@ func setTraceCallConfigDefaultTracer(config *TraceCallConfig) *TraceCallConfig {
 	return config
 }
 
-// TraceAPI is the collection of Ethereum full node APIs exposed over
+// TraceAPI is the collection of NeroCash full node APIs exposed over
 // the private debugging endpoint.
 type TraceAPI struct {
 	debugAPI *API
 }
 
 // NewTraceAPI creates a new API definition for the full node-related
-// private debug methods of the Ethereum service.
+// private debug methods of the NeroCash service.
 func NewTraceAPI(debugAPI *API) *TraceAPI {
 	return &TraceAPI{debugAPI: debugAPI}
 }

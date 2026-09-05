@@ -60,18 +60,18 @@ const estimateGasErrorRatio = 0.015
 
 var errBlobTxNotSupported = errors.New("signing blob transactions not supported")
 
-// EthereumAPI provides an API to access Ethereum related information.
-type EthereumAPI struct {
+// NeroCashAPI provides an API to access NeroCash related information.
+type NeroCashAPI struct {
 	b Backend
 }
 
-// NewEthereumAPI creates a new Ethereum protocol API.
-func NewEthereumAPI(b Backend) *EthereumAPI {
-	return &EthereumAPI{b}
+// NewNeroCashAPI creates a new NeroCash protocol API.
+func NewNeroCashAPI(b Backend) *NeroCashAPI {
+	return &NeroCashAPI{b}
 }
 
 // GasPrice returns a suggestion for a gas price for legacy transactions.
-func (s *EthereumAPI) GasPrice(ctx context.Context) (*hexutil.Big, error) {
+func (s *NeroCashAPI) GasPrice(ctx context.Context) (*hexutil.Big, error) {
 	tipcap, err := s.b.SuggestGasTipCap(ctx)
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func (s *EthereumAPI) GasPrice(ctx context.Context) (*hexutil.Big, error) {
 }
 
 // MaxPriorityFeePerGas returns a suggestion for a gas tip cap for dynamic fee transactions.
-func (s *EthereumAPI) MaxPriorityFeePerGas(ctx context.Context) (*hexutil.Big, error) {
+func (s *NeroCashAPI) MaxPriorityFeePerGas(ctx context.Context) (*hexutil.Big, error) {
 	tipcap, err := s.b.SuggestGasTipCap(ctx)
 	if err != nil {
 		return nil, err
@@ -99,7 +99,7 @@ type feeHistoryResult struct {
 }
 
 // FeeHistory returns the fee market history.
-func (s *EthereumAPI) FeeHistory(ctx context.Context, blockCount math.HexOrDecimal64, lastBlock rpc.BlockNumber, rewardPercentiles []float64) (*feeHistoryResult, error) {
+func (s *NeroCashAPI) FeeHistory(ctx context.Context, blockCount math.HexOrDecimal64, lastBlock rpc.BlockNumber, rewardPercentiles []float64) (*feeHistoryResult, error) {
 	oldest, reward, baseFee, gasUsed, err := s.b.FeeHistory(ctx, uint64(blockCount), lastBlock, rewardPercentiles)
 	if err != nil {
 		return nil, err
@@ -133,7 +133,7 @@ func (s *EthereumAPI) FeeHistory(ctx context.Context, blockCount math.HexOrDecim
 // - highestBlock:  block number of the highest block header this node has received from peers
 // - pulledStates:  number of state entries processed until now
 // - knownStates:   number of known state entries that still need to be pulled
-func (s *EthereumAPI) Syncing() (interface{}, error) {
+func (s *NeroCashAPI) Syncing() (interface{}, error) {
 	progress := s.b.SyncProgress()
 
 	// Return not syncing if the synchronisation already completed
@@ -266,19 +266,19 @@ func (s *TxPoolAPI) Inspect() map[string]map[string]map[string]string {
 	return content
 }
 
-// EthereumAccountAPI provides an API to access accounts managed by this node.
+// NeroCashAccountAPI provides an API to access accounts managed by this node.
 // It offers only methods that can retrieve accounts.
-type EthereumAccountAPI struct {
+type NeroCashAccountAPI struct {
 	am *accounts.Manager
 }
 
-// NewEthereumAccountAPI creates a new EthereumAccountAPI.
-func NewEthereumAccountAPI(am *accounts.Manager) *EthereumAccountAPI {
-	return &EthereumAccountAPI{am: am}
+// NewNeroCashAccountAPI creates a new NeroCashAccountAPI.
+func NewNeroCashAccountAPI(am *accounts.Manager) *NeroCashAccountAPI {
+	return &NeroCashAccountAPI{am: am}
 }
 
 // Accounts returns the collection of accounts this node manages.
-func (s *EthereumAccountAPI) Accounts() []common.Address {
+func (s *NeroCashAccountAPI) Accounts() []common.Address {
 	return s.am.Accounts()
 }
 
@@ -525,8 +525,8 @@ func (s *PersonalAccountAPI) SignTransaction(ctx context.Context, args Transacti
 	return &SignTransactionResult{data, signed}, nil
 }
 
-// Sign calculates an Ethereum ECDSA signature for:
-// keccak256("\x19Ethereum Signed Message:\n" + len(message) + message))
+// Sign calculates an NeroCash ECDSA signature for:
+// keccak256("\x19NeroCash Signed Message:\n" + len(message) + message))
 //
 // Note, the produced signature conforms to the secp256k1 curve R, S and V values,
 // where the V value will be 27 or 28 for legacy reasons.
@@ -555,7 +555,7 @@ func (s *PersonalAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr 
 // EcRecover returns the address for the account that was used to create the signature.
 // Note, this function is compatible with eth_sign and personal_sign. As such it recovers
 // the address of:
-// hash = keccak256("\x19Ethereum Signed Message:\n"${message length}${message})
+// hash = keccak256("\x19NeroCash Signed Message:\n"${message length}${message})
 // addr = ecrecover(hash, signature)
 //
 // Note, the signature must conform to the secp256k1 curve R, S and V values, where
@@ -567,7 +567,7 @@ func (s *PersonalAccountAPI) EcRecover(ctx context.Context, data, sig hexutil.By
 		return common.Address{}, fmt.Errorf("signature must be %d bytes long", crypto.SignatureLength)
 	}
 	if sig[crypto.RecoveryIDOffset] != 27 && sig[crypto.RecoveryIDOffset] != 28 {
-		return common.Address{}, errors.New("invalid Ethereum signature (V is not 27 or 28)")
+		return common.Address{}, errors.New("invalid NeroCash signature (V is not 27 or 28)")
 	}
 	sig[crypto.RecoveryIDOffset] -= 27 // Transform yellow paper V from 27/28 to 0/1
 
@@ -620,17 +620,17 @@ func (s *PersonalAccountAPI) Unpair(ctx context.Context, url string, pin string)
 	}
 }
 
-// BlockChainAPI provides an API to access Ethereum blockchain data.
+// BlockChainAPI provides an API to access NeroCash blockchain data.
 type BlockChainAPI struct {
 	b Backend
 }
 
-// NewBlockChainAPI creates a new Ethereum blockchain API.
+// NewBlockChainAPI creates a new NeroCash blockchain API.
 func NewBlockChainAPI(b Backend) *BlockChainAPI {
 	return &BlockChainAPI{b}
 }
 
-// ChainId is the EIP-155 replay-protection chain id for the current Ethereum chain config.
+// ChainId is the EIP-155 replay-protection chain id for the current NeroCash chain config.
 //
 // Note, this method does not conform to EIP-695 because the configured chain ID is always
 // returned, regardless of the current head block. We used to return an error when the chain
@@ -1995,7 +1995,7 @@ func (s *TransactionAPI) SendRawTransaction(ctx context.Context, input hexutil.B
 }
 
 // Sign calculates an ECDSA signature for:
-// keccak256("\x19Ethereum Signed Message:\n" + len(message) + message).
+// keccak256("\x19NeroCash Signed Message:\n" + len(message) + message).
 //
 // Note, the produced signature conforms to the secp256k1 curve R, S and V values,
 // where the V value will be 27 or 28 for legacy reasons.
@@ -2136,7 +2136,7 @@ func (s *TransactionAPI) Resend(ctx context.Context, sendArgs TransactionArgs, g
 	return common.Hash{}, fmt.Errorf("transaction %#x not found", matchTx.Hash())
 }
 
-// DebugAPI is the collection of Ethereum APIs exposed over the debugging
+// DebugAPI is the collection of NeroCash APIs exposed over the debugging
 // namespace.
 type DebugAPI struct {
 	b Backend
@@ -2301,7 +2301,7 @@ func (s *NetAPI) PeerCount() hexutil.Uint {
 	return hexutil.Uint(s.net.PeerCount())
 }
 
-// Version returns the current ethereum protocol version.
+// Version returns the current nerocash protocol version.
 func (s *NetAPI) Version() string {
 	return fmt.Sprintf("%d", s.networkVersion)
 }

@@ -1,4 +1,4 @@
-## CoreGeth: An Ethereum Protocol Provider
+## CoreGeth: An NeroCash Protocol Provider
 
 > An [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum) downstream effort to make the Ethereum Protocol accessible and extensible for a diverse ecosystem.
 
@@ -21,7 +21,7 @@ Networks supported by the respective go-ethereum packaged `geth` program.
 | Ticker | Consensus         | Network                               | core-geth                                                | ethereum/go-ethereum |
 | ---    | ---               | ---                                   | ---                                                      | ---                  |
 | ETC    | :zap:             | Nerocash                      | :heavy_check_mark:                                       |                      |
-| ETH    | :zap:             | Ethereum (Foundation)                 | :heavy_check_mark:                                       | :heavy_check_mark:   |
+| ETH    | :zap:             | NeroCash (Foundation)                 | :heavy_check_mark:                                       | :heavy_check_mark:   |
 | -      | :zap: :handshake: | Private chains                        | :heavy_check_mark:                                       | :heavy_check_mark:   |
 |        | :zap:             | Mordor (Geth+Parity ETH PoW Testnet)  | :heavy_check_mark:                                       |                      |
 |        | :zap:             | Morden (Geth+Parity ETH PoW Testnet)  |                                                          |                      |

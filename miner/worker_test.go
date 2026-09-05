@@ -559,7 +559,7 @@ func TestGetSealingWorkClique(t *testing.T) {
 
 func TestGetSealingWorkPostMerge(t *testing.T) {
 	t.Parallel()
-	local := (ctypes.ChainConfigurator)(new(goethereum.ChainConfig))
+	local := (ctypes.ChainConfigurator)(new(gonerocash.ChainConfig))
 	local.SetEthashTerminalTotalDifficulty(big.NewInt(0))
 	testGetSealingWork(t, local, ethash.NewFaker())
 }

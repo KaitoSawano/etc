@@ -50,19 +50,19 @@ import (
 	meta_schema "github.com/open-rpc/meta-schema"
 )
 
-// Verify that Client implements the ethereum interfaces.
+// Verify that Client implements the nerocash interfaces.
 var (
-	_ = ethereum.ChainReader(&Client{})
-	_ = ethereum.TransactionReader(&Client{})
-	_ = ethereum.ChainStateReader(&Client{})
-	_ = ethereum.ChainSyncReader(&Client{})
-	_ = ethereum.ContractCaller(&Client{})
-	_ = ethereum.GasEstimator(&Client{})
-	_ = ethereum.GasPricer(&Client{})
-	_ = ethereum.LogFilterer(&Client{})
-	_ = ethereum.PendingStateReader(&Client{})
-	// _ = ethereum.PendingStateEventer(&Client{})
-	_ = ethereum.PendingContractCaller(&Client{})
+	_ = nerocash.ChainReader(&Client{})
+	_ = nerocash.TransactionReader(&Client{})
+	_ = nerocash.ChainStateReader(&Client{})
+	_ = nerocash.ChainSyncReader(&Client{})
+	_ = nerocash.ContractCaller(&Client{})
+	_ = nerocash.GasEstimator(&Client{})
+	_ = nerocash.GasPricer(&Client{})
+	_ = nerocash.LogFilterer(&Client{})
+	_ = nerocash.PendingStateReader(&Client{})
+	// _ = nerocash.PendingStateEventer(&Client{})
+	_ = nerocash.PendingContractCaller(&Client{})
 )
 
 func TestToFilterArg(t *testing.T) {
@@ -76,13 +76,13 @@ func TestToFilterArg(t *testing.T) {
 
 	for _, testCase := range []struct {
 		name   string
-		input  ethereum.FilterQuery
+		input  nerocash.FilterQuery
 		output interface{}
 		err    error
 	}{
 		{
 			"without BlockHash",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				FromBlock: big.NewInt(1),
 				ToBlock:   big.NewInt(2),
@@ -98,7 +98,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with nil fromBlock and nil toBlock",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				Topics:    [][]common.Hash{},
 			},
@@ -112,7 +112,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with negative fromBlock and negative toBlock",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				FromBlock: big.NewInt(-1),
 				ToBlock:   big.NewInt(-1),
@@ -128,7 +128,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with blockhash",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				BlockHash: &blockHash,
 				Topics:    [][]common.Hash{},
@@ -142,7 +142,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with blockhash and from block",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				BlockHash: &blockHash,
 				FromBlock: big.NewInt(1),
@@ -153,7 +153,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with blockhash and to block",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				BlockHash: &blockHash,
 				ToBlock:   big.NewInt(1),
@@ -164,7 +164,7 @@ func TestToFilterArg(t *testing.T) {
 		},
 		{
 			"with blockhash and both from / to block",
-			ethereum.FilterQuery{
+			nerocash.FilterQuery{
 				Addresses: addresses,
 				BlockHash: &blockHash,
 				FromBlock: big.NewInt(1),
@@ -230,12 +230,12 @@ func newTestBackend(t *testing.T) (*node.Node, []*types.Block) {
 	if err != nil {
 		t.Fatalf("can't create new node: %v", err)
 	}
-	// Create Ethereum Service
+	// Create NeroCash Service
 	config := &ethconfig.Config{Genesis: genesis}
 	config.Ethash.PowMode = ethash.ModeFake
 	ethservice, err := eth.New(n, config)
 	if err != nil {
-		t.Fatalf("can't create new ethereum service: %v", err)
+		t.Fatalf("can't create new nerocash service: %v", err)
 	}
 	n.RegisterAPIs(tracers.APIs(ethservice.APIBackend))
 
@@ -342,7 +342,7 @@ func testHeader(t *testing.T, chain []*types.Block, client *rpc.Client) {
 		"future_block": {
 			block:   big.NewInt(1000000000),
 			want:    nil,
-			wantErr: ethereum.NotFound,
+			wantErr: nerocash.NotFound,
 		},
 	}
 	for name, tt := range tests {
@@ -459,8 +459,8 @@ func testTransactionInBlock(t *testing.T, client *rpc.Client) {
 	}
 
 	// Test tx in block not found.
-	if _, err := ec.TransactionInBlock(context.Background(), block.Hash(), 20); err != ethereum.NotFound {
-		t.Fatal("error should be ethereum.NotFound")
+	if _, err := ec.TransactionInBlock(context.Background(), block.Hash(), 20); err != nerocash.NotFound {
+		t.Fatal("error should be nerocash.NotFound")
 	}
 
 	// Test tx in block found.
@@ -581,7 +581,7 @@ func testStatusFunctions(t *testing.T, client *rpc.Client) {
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	want := &ethereum.FeeHistory{
+	want := &nerocash.FeeHistory{
 		OldestBlock: big.NewInt(2),
 		Reward: [][]*big.Int{
 			{
@@ -604,7 +604,7 @@ func testCallContractAtHash(t *testing.T, client *rpc.Client) {
 	ec := NewClient(client)
 
 	// EstimateGas
-	msg := ethereum.CallMsg{
+	msg := nerocash.CallMsg{
 		From:  testAddr,
 		To:    &common.Address{},
 		Gas:   21000,
@@ -631,7 +631,7 @@ func testCallContract(t *testing.T, client *rpc.Client) {
 	ec := NewClient(client)
 
 	// EstimateGas
-	msg := ethereum.CallMsg{
+	msg := nerocash.CallMsg{
 		From:  testAddr,
 		To:    &common.Address{},
 		Gas:   21000,
@@ -910,7 +910,7 @@ func subscriptionTestSetup(t *testing.T) (genesisBlock *genesisT.Genesis, backen
 		t.Fatalf("can't create new node: %v", err)
 	}
 
-	// Create Ethereum Service
+	// Create NeroCash Service
 	config := &eth.Config{Genesis: genesis}
 	config.Ethash.PowMode = ethash.ModeFake
 
@@ -931,12 +931,12 @@ func TestEthSubscribeNewSideHeads(t *testing.T) {
 	})
 	originalBlocks = append([]*types.Block{gblock}, originalBlocks...)
 
-	// Create Ethereum Service
+	// Create NeroCash Service
 	config := &eth.Config{Genesis: genesis}
 	config.Ethash.PowMode = ethash.ModeFake
 	ethservice, err := eth.New(backend, config)
 	if err != nil {
-		t.Fatalf("can't create new ethereum service: %v", err)
+		t.Fatalf("can't create new nerocash service: %v", err)
 	}
 
 	filterSystem := filters.NewFilterSystem(ethservice.APIBackend, filters.Config{})
@@ -1060,12 +1060,12 @@ func mustNewTestBackend() (*node.Node, []*types.Block) {
 	if err != nil {
 		panic(fmt.Sprintf("can't create new node: %v", err))
 	}
-	// Create Ethereum Service
+	// Create NeroCash Service
 	config := &eth.Config{Genesis: genesis}
 	config.Ethash.PowMode = ethash.ModeFake
 	ethservice, err := eth.New(n, config)
 	if err != nil {
-		panic(fmt.Sprintf("can't create new ethereum service: %v", err))
+		panic(fmt.Sprintf("can't create new nerocash service: %v", err))
 	}
 	// Import the test chain.
 	if err := n.Start(); err != nil {

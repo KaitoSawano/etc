@@ -21,32 +21,32 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 )
 
-// EthereumAPI provides an API to access Ethereum full node-related information.
-type EthereumAPI struct {
-	e *Ethereum
+// NeroCashAPI provides an API to access NeroCash full node-related information.
+type NeroCashAPI struct {
+	e *NeroCash
 }
 
-// NewEthereumAPI creates a new Ethereum protocol API for full nodes.
-func NewEthereumAPI(e *Ethereum) *EthereumAPI {
-	return &EthereumAPI{e}
+// NewNeroCashAPI creates a new NeroCash protocol API for full nodes.
+func NewNeroCashAPI(e *NeroCash) *NeroCashAPI {
+	return &NeroCashAPI{e}
 }
 
 // Etherbase is the address that mining rewards will be sent to.
-func (api *EthereumAPI) Etherbase() (common.Address, error) {
+func (api *NeroCashAPI) Etherbase() (common.Address, error) {
 	return api.e.Etherbase()
 }
 
 // Coinbase is the address that mining rewards will be sent to (alias for Etherbase).
-func (api *EthereumAPI) Coinbase() (common.Address, error) {
+func (api *NeroCashAPI) Coinbase() (common.Address, error) {
 	return api.Etherbase()
 }
 
 // Hashrate returns the POW hashrate.
-func (api *EthereumAPI) Hashrate() hexutil.Uint64 {
+func (api *NeroCashAPI) Hashrate() hexutil.Uint64 {
 	return hexutil.Uint64(api.e.Miner().Hashrate())
 }
 
 // Mining returns an indication if this node is currently mining.
-func (api *EthereumAPI) Mining() bool {
+func (api *NeroCashAPI) Mining() bool {
 	return api.e.IsMining()
 }

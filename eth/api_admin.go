@@ -30,14 +30,14 @@ import (
 	"github.com/ethereum/go-ethereum/rpc"
 )
 
-// AdminAPI is the collection of Ethereum full node related APIs for node
+// AdminAPI is the collection of NeroCash full node related APIs for node
 // administration.
 type AdminAPI struct {
-	eth *Ethereum
+	eth *NeroCash
 }
 
 // NewAdminAPI creates a new instance of AdminAPI.
-func NewAdminAPI(eth *Ethereum) *AdminAPI {
+func NewAdminAPI(eth *NeroCash) *AdminAPI {
 	return &AdminAPI{eth: eth}
 }
 

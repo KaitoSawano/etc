@@ -42,7 +42,7 @@ var (
 	MainnetTerminalTotalDifficulty, _ = new(big.Int).SetString("58_750_000_000_000_000_000_000", 0)
 
 	// MainnetChainConfig is the chain parameters to run a node on the main network.
-	MainnetChainConfig = &goethereum.ChainConfig{
+	MainnetChainConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(5),
 		SupportedProtocolVersions:     vars.DefaultProtocolVersions,
 		HomesteadBlock:                big.NewInt(1_150_000),
@@ -67,7 +67,7 @@ var (
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 	// HoleskyChainConfig contains the chain parameters to run a node on the Holesky test network.
-	HoleskyChainConfig = &goethereum.ChainConfig{
+	HoleskyChainConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(17000),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -92,7 +92,7 @@ var (
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 	// SepoliaChainConfig contains the chain parameters to run a node on the Sepolia test network.
-	SepoliaChainConfig = &goethereum.ChainConfig{
+	SepoliaChainConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(11155111),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -118,8 +118,8 @@ var (
 	}
 
 	// AllEthashProtocolChanges contains every protocol change (EIPs) introduced
-	// and accepted by the Ethereum core developers into the Ethash consensus.
-	AllEthashProtocolChanges = &goethereum.ChainConfig{
+	// and accepted by the NeroCash core developers into the Ethash consensus.
+	AllEthashProtocolChanges = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1337),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -147,7 +147,7 @@ var (
 		Clique:                        nil,
 	}
 
-	AllDevChainProtocolChanges = &goethereum.ChainConfig{
+	AllDevChainProtocolChanges = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1337),
 		HomesteadBlock:                big.NewInt(0),
 		EIP150Block:                   big.NewInt(0),
@@ -168,8 +168,8 @@ var (
 	}
 
 	// AllCliqueProtocolChanges contains every protocol change (EIPs) introduced
-	// and accepted by the Ethereum core developers into the Clique consensus.
-	AllCliqueProtocolChanges = &goethereum.ChainConfig{
+	// and accepted by the NeroCash core developers into the Clique consensus.
+	AllCliqueProtocolChanges = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1337),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -201,8 +201,8 @@ var (
 	}
 
 	// TestChainConfig contains every protocol change (EIPs) introduced
-	// and accepted by the Ethereum core developers for testing purposes.
-	TestChainConfig = &goethereum.ChainConfig{
+	// and accepted by the NeroCash core developers for testing purposes.
+	TestChainConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -231,8 +231,8 @@ var (
 	}
 
 	// MergedTestChainConfig contains every protocol change (EIPs) introduced
-	// and accepted by the Ethereum core developers for testing purposes.
-	MergedTestChainConfig = &goethereum.ChainConfig{
+	// and accepted by the NeroCash core developers for testing purposes.
+	MergedTestChainConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -262,7 +262,7 @@ var (
 
 	// NonActivatedConfig defines the chain configuration without activating
 	// any protocol change (EIPs).
-	NonActivatedConfig = &goethereum.ChainConfig{
+	NonActivatedConfig = &gonerocash.ChainConfig{
 		ChainID:                       big.NewInt(1),
 		HomesteadBlock:                nil,
 		DAOForkBlock:                  nil,

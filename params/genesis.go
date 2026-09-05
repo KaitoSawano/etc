@@ -28,7 +28,7 @@ import (
 	"github.com/ethereum/go-ethereum/params/vars"
 )
 
-// DefaultGenesisBlock returns the Ethereum main net genesis block.
+// DefaultGenesisBlock returns the NeroCash main net genesis block.
 func DefaultGenesisBlock() *genesisT.Genesis {
 	return &genesisT.Genesis{
 		Config:     MainnetChainConfig,
@@ -70,7 +70,7 @@ func DefaultHoleskyGenesisBlock() *genesisT.Genesis {
 func DeveloperGenesisBlock(gasLimit uint64, faucet *common.Address, useEthash bool) *genesisT.Genesis {
 	if !useEthash {
 		// Make a copy to avoid unpredicted contamination.
-		config := &goethereum.ChainConfig{}
+		config := &gonerocash.ChainConfig{}
 		*config = *AllDevChainProtocolChanges
 
 		// Assemble and return the genesis with the precompiles and faucet pre-funded

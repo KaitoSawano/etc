@@ -59,7 +59,7 @@ type Config struct {
 // sets defaults on the config
 func setDefaults(cfg *Config) {
 	if cfg.ChainConfig == nil {
-		cfg.ChainConfig = &goethereum.ChainConfig{
+		cfg.ChainConfig = &gonerocash.ChainConfig{
 			ChainID:             big.NewInt(1),
 			HomesteadBlock:      new(big.Int),
 			DAOForkBlock:        new(big.Int),

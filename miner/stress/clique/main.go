@@ -66,7 +66,7 @@ func main() {
 
 	var (
 		stacks []*node.Node
-		nodes  []*eth.Ethereum
+		nodes  []*eth.NeroCash
 		enodes []*enode.Node
 	)
 	for _, sealer := range sealers {
@@ -181,8 +181,8 @@ func makeGenesis(faucets []*ecdsa.PrivateKey, sealers []*ecdsa.PrivateKey) *gene
 	return genesis
 }
 
-func makeSealer(genesis *genesisT.Genesis) (*node.Node, *eth.Ethereum, error) {
-	// Define the basic configurations for the Ethereum node
+func makeSealer(genesis *genesisT.Genesis) (*node.Node, *eth.NeroCash, error) {
+	// Define the basic configurations for the NeroCash node
 	datadir, _ := os.MkdirTemp("", "")
 
 	config := &node.Config{
@@ -195,7 +195,7 @@ func makeSealer(genesis *genesisT.Genesis) (*node.Node, *eth.Ethereum, error) {
 			MaxPeers:    25,
 		},
 	}
-	// Start the node and configure a full Ethereum node on it
+	// Start the node and configure a full NeroCash node on it
 	stack, err := node.New(config)
 	if err != nil {
 		return nil, nil, err

@@ -34,7 +34,7 @@ import (
 type CoreGethChainConfig struct {
 	// Some of the following fields are left commented because it's useful to see pairings,
 	// both for reference and edification.
-	// They show a difference between the upstream configuration data type (goethereum.ChainConfig) and this one.
+	// They show a difference between the upstream configuration data type (gonerocash.ChainConfig) and this one.
 
 	NetworkID                 uint64   `json:"networkId"`
 	ChainID                   *big.Int `json:"chainId"`                             // chainId identifies the current chain and is used for replay protection

@@ -104,7 +104,7 @@ var (
 	_ = errors.New
 	_ = big.NewInt
 	_ = strings.NewReader
-	_ = ethereum.NotFound
+	_ = nerocash.NotFound
 	_ = bind.Bind
 	_ = common.Big1
 	_ = types.BloomLookup
@@ -150,7 +150,7 @@ var (
 		// Deprecated: Use {{.Type}}MetaData.Bin instead.
 		var {{.Type}}Bin = {{.Type}}MetaData.Bin
 
-		// Deploy{{.Type}} deploys a new Ethereum contract, binding an instance of {{.Type}} to it.
+		// Deploy{{.Type}} deploys a new NeroCash contract, binding an instance of {{.Type}} to it.
 		func Deploy{{.Type}}(auth *bind.TransactOpts, backend bind.ContractBackend {{range .Constructor.Inputs}}, {{.Name}} {{bindtype .Type $structs}}{{end}}) (common.Address, *types.Transaction, *{{.Type}}, error) {
 		  parsed, err := {{.Type}}MetaData.GetAbi()
 		  if err != nil {
@@ -171,29 +171,29 @@ var (
 		}
 	{{end}}
 
-	// {{.Type}} is an auto generated Go binding around an Ethereum contract.
+	// {{.Type}} is an auto generated Go binding around an NeroCash contract.
 	type {{.Type}} struct {
 	  {{.Type}}Caller     // Read-only binding to the contract
 	  {{.Type}}Transactor // Write-only binding to the contract
 	  {{.Type}}Filterer   // Log filterer for contract events
 	}
 
-	// {{.Type}}Caller is an auto generated read-only Go binding around an Ethereum contract.
+	// {{.Type}}Caller is an auto generated read-only Go binding around an NeroCash contract.
 	type {{.Type}}Caller struct {
 	  contract *bind.BoundContract // Generic contract wrapper for the low level calls
 	}
 
-	// {{.Type}}Transactor is an auto generated write-only Go binding around an Ethereum contract.
+	// {{.Type}}Transactor is an auto generated write-only Go binding around an NeroCash contract.
 	type {{.Type}}Transactor struct {
 	  contract *bind.BoundContract // Generic contract wrapper for the low level calls
 	}
 
-	// {{.Type}}Filterer is an auto generated log filtering Go binding around an Ethereum contract events.
+	// {{.Type}}Filterer is an auto generated log filtering Go binding around an NeroCash contract events.
 	type {{.Type}}Filterer struct {
 	  contract *bind.BoundContract // Generic contract wrapper for the low level calls
 	}
 
-	// {{.Type}}Session is an auto generated Go binding around an Ethereum contract,
+	// {{.Type}}Session is an auto generated Go binding around an NeroCash contract,
 	// with pre-set call and transact options.
 	type {{.Type}}Session struct {
 	  Contract     *{{.Type}}        // Generic contract binding to set the session for
@@ -201,31 +201,31 @@ var (
 	  TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 	}
 
-	// {{.Type}}CallerSession is an auto generated read-only Go binding around an Ethereum contract,
+	// {{.Type}}CallerSession is an auto generated read-only Go binding around an NeroCash contract,
 	// with pre-set call options.
 	type {{.Type}}CallerSession struct {
 	  Contract *{{.Type}}Caller // Generic contract caller binding to set the session for
 	  CallOpts bind.CallOpts    // Call options to use throughout this session
 	}
 
-	// {{.Type}}TransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+	// {{.Type}}TransactorSession is an auto generated write-only Go binding around an NeroCash contract,
 	// with pre-set transact options.
 	type {{.Type}}TransactorSession struct {
 	  Contract     *{{.Type}}Transactor // Generic contract transactor binding to set the session for
 	  TransactOpts bind.TransactOpts    // Transaction auth options to use throughout this session
 	}
 
-	// {{.Type}}Raw is an auto generated low-level Go binding around an Ethereum contract.
+	// {{.Type}}Raw is an auto generated low-level Go binding around an NeroCash contract.
 	type {{.Type}}Raw struct {
 	  Contract *{{.Type}} // Generic contract binding to access the raw methods on
 	}
 
-	// {{.Type}}CallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+	// {{.Type}}CallerRaw is an auto generated low-level read-only Go binding around an NeroCash contract.
 	type {{.Type}}CallerRaw struct {
 		Contract *{{.Type}}Caller // Generic read-only contract binding to access the raw methods on
 	}
 
-	// {{.Type}}TransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+	// {{.Type}}TransactorRaw is an auto generated low-level write-only Go binding around an NeroCash contract.
 	type {{.Type}}TransactorRaw struct {
 		Contract *{{.Type}}Transactor // Generic write-only contract binding to access the raw methods on
 	}
@@ -433,7 +433,7 @@ var (
 			event    string              // Event name to use for unpacking event data
 
 			logs chan types.Log        // Log channel receiving the found contract events
-			sub  ethereum.Subscription // Subscription for errors, completion and termination
+			sub  nerocash.Subscription // Subscription for errors, completion and termination
 			done bool                  // Whether the subscription completed delivering logs
 			fail error                 // Occurred error to stop iteration
 		}

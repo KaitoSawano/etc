@@ -33,7 +33,7 @@ type Config struct {
 	EVMInterpreter          string    // External EVM interpreter options
 }
 
-// Interpreter is used to run Ethereum based contracts and will utilise the
+// Interpreter is used to run NeroCash based contracts and will utilise the
 // passed environment to query external sources for state information.
 // The Interpreter will run the byte code VM based on the passed
 // configuration.

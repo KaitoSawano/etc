@@ -76,7 +76,7 @@ func (test *DifficultyTest) Run(config ctypes.ChainConfigurator) error {
 }
 
 var (
-	mainnetChainConfig = &goethereum.ChainConfig{
+	mainnetChainConfig = &gonerocash.ChainConfig{
 		Ethash:         new(ctypes.EthashConfig),
 		ChainID:        big.NewInt(1),
 		HomesteadBlock: big.NewInt(1150000),
@@ -91,22 +91,22 @@ var (
 )
 
 var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
-	"Frontier": &goethereum.ChainConfig{},
-	"Homestead": &goethereum.ChainConfig{
+	"Frontier": &gonerocash.ChainConfig{},
+	"Homestead": &gonerocash.ChainConfig{
 		Ethash:         new(ctypes.EthashConfig),
 		HomesteadBlock: big.NewInt(0),
 	},
-	"Byzantium": &goethereum.ChainConfig{
+	"Byzantium": &gonerocash.ChainConfig{
 		Ethash:         new(ctypes.EthashConfig),
 		ByzantiumBlock: big.NewInt(0),
 	},
-	"GrayGlacier": &goethereum.ChainConfig{
+	"GrayGlacier": &gonerocash.ChainConfig{
 		Ethash:           new(ctypes.EthashConfig),
 		GrayGlacierBlock: big.NewInt(0),
 	},
 	"MainNetwork":       mainnetChainConfig,
 	"CustomMainNetwork": mainnetChainConfig,
-	"Constantinople": &goethereum.ChainConfig{
+	"Constantinople": &gonerocash.ChainConfig{
 		Ethash:              new(ctypes.EthashConfig),
 		HomesteadBlock:      big.NewInt(0),
 		ByzantiumBlock:      big.NewInt(0),
@@ -235,7 +235,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		ECIP1010Length:     big.NewInt(0),
 		ECBP1100FBlock:     big.NewInt(0), // ETA 09 Oct 2020
 	},
-	"EIP2384": &goethereum.ChainConfig{
+	"EIP2384": &gonerocash.ChainConfig{
 		Ethash:              new(ctypes.EthashConfig),
 		HomesteadBlock:      big.NewInt(0),
 		ByzantiumBlock:      big.NewInt(0),
