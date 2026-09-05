@@ -43,7 +43,7 @@ var (
 
 	// MainnetChainConfig is the chain parameters to run a node on the main network.
 	MainnetChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1),
+		ChainID:                       big.NewInt(8599),
 		SupportedProtocolVersions:     vars.DefaultProtocolVersions,
 		HomesteadBlock:                big.NewInt(1_150_000),
 		DAOForkBlock:                  big.NewInt(1_920_000),
@@ -68,7 +68,7 @@ var (
 	}
 	// HoleskyChainConfig contains the chain parameters to run a node on the Holesky test network.
 	HoleskyChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(17000),
+		ChainID:                       big.NewInt(17555),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                true,
@@ -93,7 +93,7 @@ var (
 	}
 	// SepoliaChainConfig contains the chain parameters to run a node on the Sepolia test network.
 	SepoliaChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(11155111),
+		ChainID:                       big.NewInt(11199111),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                true,
@@ -120,7 +120,7 @@ var (
 	// AllEthashProtocolChanges contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers into the Ethash consensus.
 	AllEthashProtocolChanges = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1337),
+		ChainID:                       big.NewInt(18553),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -148,7 +148,7 @@ var (
 	}
 
 	AllDevChainProtocolChanges = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1337),
+		ChainID:                       big.NewInt(1250),
 		HomesteadBlock:                big.NewInt(0),
 		EIP150Block:                   big.NewInt(0),
 		EIP155Block:                   big.NewInt(0),
@@ -170,7 +170,7 @@ var (
 	// AllCliqueProtocolChanges contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers into the Clique consensus.
 	AllCliqueProtocolChanges = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1337),
+		ChainID:                       big.NewInt(1250),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -203,7 +203,7 @@ var (
 	// TestChainConfig contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers for testing purposes.
 	TestChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1),
+		ChainID:                       big.NewInt(21),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -233,7 +233,7 @@ var (
 	// MergedTestChainConfig contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers for testing purposes.
 	MergedTestChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1),
+		ChainID:                       big.NewInt(21),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -263,7 +263,7 @@ var (
 	// NonActivatedConfig defines the chain configuration without activating
 	// any protocol change (EIPs).
 	NonActivatedConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(1),
+		ChainID:                       big.NewInt(21),
 		HomesteadBlock:                nil,
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
