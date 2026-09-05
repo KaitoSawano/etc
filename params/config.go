@@ -112,8 +112,8 @@ var (
 		TerminalTotalDifficulty:       big.NewInt(17_000_000_000_000_000),
 		TerminalTotalDifficultyPassed: true,
 		MergeNetsplitBlock:            big.NewInt(1735371),
-		ShanghaiTime:                  newUint64(0),
-		CancunTime:                    newUint64(0),
+		ShanghaiTime:                  newUint64(1677557088),
+		CancunTime:                    newUint64(1706655072),
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 
