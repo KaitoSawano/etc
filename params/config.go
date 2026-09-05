@@ -62,8 +62,8 @@ var (
 		GrayGlacierBlock:              big.NewInt(15_050_000),
 		TerminalTotalDifficulty:       nil,
 		TerminalTotalDifficultyPassed: false,
-		ShanghaiTime:                  newUint64(0),
-		CancunTime:                    newUint64(0),
+		ShanghaiTime:                  newUint64(1681338455),
+		CancunTime:                    newUint64(1710338135),
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 	// HoleskyChainConfig contains the chain parameters to run a node on the Holesky test network.
