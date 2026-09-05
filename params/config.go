@@ -62,8 +62,8 @@ var (
 		GrayGlacierBlock:              big.NewInt(0),
 		TerminalTotalDifficulty:       nil,
 		TerminalTotalDifficultyPassed: false,
-		ShanghaiTime:                  newUint64(1681338455),
-		CancunTime:                    newUint64(1710338135),
+		ShanghaiTime:                  newUint64(0),
+		CancunTime:                    newUint64(0),
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 	// HoleskyChainConfig contains the chain parameters to run a node on the Holesky test network.
@@ -87,8 +87,8 @@ var (
 		TerminalTotalDifficulty:       big.NewInt(0),
 		TerminalTotalDifficultyPassed: false,
 		MergeNetsplitBlock:            nil,
-		ShanghaiTime:                  newUint64(1696000704),
-		CancunTime:                    newUint64(1707305664),
+		ShanghaiTime:                  newUint64(0),
+		CancunTime:                    newUint64(0),
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 	// SepoliaChainConfig contains the chain parameters to run a node on the Sepolia test network.
@@ -112,8 +112,8 @@ var (
 		TerminalTotalDifficulty:       big.NewInt(17_000_000_000_000_000),
 		TerminalTotalDifficultyPassed: true,
 		MergeNetsplitBlock:            big.NewInt(1735371),
-		ShanghaiTime:                  newUint64(1677557088),
-		CancunTime:                    newUint64(1706655072),
+		ShanghaiTime:                  newUint64(0),
+		CancunTime:                    newUint64(0),
 		Ethash:                        new(ctypes.EthashConfig),
 	}
 
