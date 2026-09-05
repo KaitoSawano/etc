@@ -31,7 +31,7 @@ var (
 	// compatibleProtocolNameSchemes define matchable naming schemes used by configuration methods
 	// that are not incompatible with configuration either having or lacking them.
 	compatibleProtocolNameSchemes = []string{
-		"ECBP", // "Nerocash Best Practice"
+		"ECBP", // "NeroCash Best Practice"
 		"EBP",  // "NeroCash Best Practice"
 	}
 )

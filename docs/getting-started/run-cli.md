@@ -6,9 +6,9 @@ title: Command Line Interface (CLI)
 
 !!! tip "Use for NeroCash mainnet"
 
-    While `core-geth` is mainly used for the Nerocash network, you can use it for NeroCash mainnet and other [supported networks](/#networkprovider-comparison) as well.
+    While `core-geth` is mainly used for the NeroCash network, you can use it for NeroCash mainnet and other [supported networks](/#networkprovider-comparison) as well.
 
-### Fast node on an Nerocash network
+### Fast node on an NeroCash network
 
 By far the most common scenario is people wanting to simply interact with the NeroCash
 network: create accounts; transfer funds; deploy and interact with contracts. For this
@@ -134,8 +134,8 @@ NEROCASH OPTIONS:
   --nousb                             Disables monitoring for and managing USB hardware wallets
   --pcscdpath value                   Path to the smartcard daemon (pcscd) socket file
   --networkid value                   Explicitly set network id (integer)(For testnets: use --ropsten, --rinkeby, --mordor, --yolov2 instead) (default: 1)
-  --classic                           Nerocash network: pre-configured Nerocash mainnet
-  --mordor                            Mordor network: Nerocash's cross-client proof-of-work test network
+  --classic                           NeroCash network: pre-configured NeroCash mainnet
+  --mordor                            Mordor network: NeroCash's cross-client proof-of-work test network
   --rinkeby                           Rinkeby network: pre-configured proof-of-authority test network
   --rinkeby                           Rinkeby network: pre-configured proof-of-authority test network
   --yolov2                            YOLOv2 network: pre-configured proof-of-authority shortlived test network.

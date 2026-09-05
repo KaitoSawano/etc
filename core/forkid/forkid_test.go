@@ -560,7 +560,7 @@ func TestGenerateSpecificationCases(t *testing.T) {
 		config  ctypes.ChainConfigurator
 		genesis *types.Block
 	}{
-		{"Nerocash Mainnet (ETC)",
+		{"NeroCash Mainnet (ETC)",
 			params.ClassicChainConfig,
 			core.GenesisToBlock(params.DefaultClassicGenesisBlock(), nil),
 		},

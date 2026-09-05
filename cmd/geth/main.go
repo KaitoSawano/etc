@@ -348,7 +348,7 @@ func checkMainnet(ctx *cli.Context) bool {
 `)
 
 	case ctx.IsSet(utils.ClassicFlag.Name):
-		log.Info("Starting Geth on Nerocash...")
+		log.Info("Starting Geth on NeroCash...")
 
 	case ctx.IsSet(utils.MordorFlag.Name):
 		log.Info("Starting Geth on Mordor testnet...")

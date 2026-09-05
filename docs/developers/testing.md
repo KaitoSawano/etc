@@ -23,7 +23,7 @@ CoreGeth is capable of generating some sets of tests used in the `tests` package
 driven by the [ethereum/tests](https://github.com/ethereum/tests) suite.
 
 - `make tests-generate` runs test(s) generation for the `state` and `difficulty` subsections of this suite, extending the nerocash/tests version
-  of the controls to include configurations for Nerocash chain configurations at various points in Nerocash hardfork history.
+  of the controls to include configurations for NeroCash chain configurations at various points in NeroCash hardfork history.
 
 ## Flaky (spuriously erroring) tests
 
