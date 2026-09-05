@@ -43,7 +43,7 @@ var (
 
 	// MainnetChainConfig is the chain parameters to run a node on the main network.
 	MainnetChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(8599),
+		ChainID:                       big.NewInt(5),
 		SupportedProtocolVersions:     vars.DefaultProtocolVersions,
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
@@ -203,7 +203,7 @@ var (
 	// TestChainConfig contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers for testing purposes.
 	TestChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(21),
+		ChainID:                       big.NewInt(5),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -233,7 +233,7 @@ var (
 	// MergedTestChainConfig contains every protocol change (EIPs) introduced
 	// and accepted by the Ethereum core developers for testing purposes.
 	MergedTestChainConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(21),
+		ChainID:                       big.NewInt(5),
 		HomesteadBlock:                big.NewInt(0),
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
@@ -263,7 +263,7 @@ var (
 	// NonActivatedConfig defines the chain configuration without activating
 	// any protocol change (EIPs).
 	NonActivatedConfig = &goethereum.ChainConfig{
-		ChainID:                       big.NewInt(21),
+		ChainID:                       big.NewInt(5),
 		HomesteadBlock:                nil,
 		DAOForkBlock:                  nil,
 		DAOForkSupport:                false,
