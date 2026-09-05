@@ -40,21 +40,21 @@ import (
 // TestDifficultyGen2 generates JSON tests from scratch.
 // The test case matrix can be deduced from the for-loop iterations.
 // The cases are written to files PER CHAIN CONFIG, following the upstream convention,
-// eg. tests/testdata_generated/BasicTests/difficultyETC_Agharta.json
+// eg. tests/testdata_generated/BasicTests/difficultyNRC_Agharta.json
 func TestDifficultyGen2(t *testing.T) {
 	if os.Getenv(CG_GENERATE_DIFFICULTY_TESTS_KEY) == "" {
 		t.Skip()
 	}
 
 	configs := map[string]ctypes.ChainConfigurator{
-		"ETC_Atlantis": Forks["ETC_Atlantis"],
-		"ETC_Agharta":  Forks["ETC_Agharta"],
-		"ETC_Phoenix":  Forks["ETC_Phoenix"],
-		"ETC_Magneto":  Forks["ETC_Magneto"],
-		"ETC_Mystique": Forks["ETC_Mystique"],
+		"NRC_Atlantis": Forks["NRC_Atlantis"],
+		"NRC_Agharta":  Forks["NRC_Agharta"],
+		"NRC_Phoenix":  Forks["NRC_Phoenix"],
+		"NRC_Magneto":  Forks["NRC_Magneto"],
+		"NRC_Mystique": Forks["NRC_Mystique"],
 	}
 
-	targetDir := filepath.Join(generatedBasedir, "DifficultyTests", "dfETC")
+	targetDir := filepath.Join(generatedBasedir, "DifficultyTests", "dfNRC")
 	if err := os.MkdirAll(targetDir, os.ModePerm); err != nil {
 		t.Fatal(err)
 	}

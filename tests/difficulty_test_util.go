@@ -113,7 +113,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		ConstantinopleBlock: big.NewInt(0),
 	},
 	"difficulty.json": mainnetChainConfig,
-	"ETC_Atlantis": &coregeth.CoreGethChainConfig{
+	"NRC_Atlantis": &coregeth.CoreGethChainConfig{
 		Ethash:     new(ctypes.EthashConfig),
 		NetworkID:  1,
 		ChainID:    big.NewInt(1),
@@ -174,7 +174,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		ECIP1010Length:     big.NewInt(0),
 		ECBP1100FBlock:     big.NewInt(0), // ETA 09 Oct 2020
 	},
-	"ETC_Agharta": &coregeth.CoreGethChainConfig{
+	"NRC_Agharta": &coregeth.CoreGethChainConfig{
 		Ethash:     new(ctypes.EthashConfig),
 		NetworkID:  1,
 		ChainID:    big.NewInt(1),
@@ -243,7 +243,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		IstanbulBlock:       big.NewInt(0),
 		MuirGlacierBlock:    big.NewInt(0),
 	},
-	"ETC_Phoenix": &coregeth.CoreGethChainConfig{
+	"NRC_Phoenix": &coregeth.CoreGethChainConfig{
 		Ethash:     new(ctypes.EthashConfig),
 		NetworkID:  1,
 		ChainID:    big.NewInt(1),
@@ -304,7 +304,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		ECIP1010Length:     big.NewInt(0),
 		ECBP1100FBlock:     big.NewInt(0), // ETA 09 Oct 2020
 	},
-	"ETC_Magneto": &coregeth.CoreGethChainConfig{
+	"NRC_Magneto": &coregeth.CoreGethChainConfig{
 		Ethash:     new(ctypes.EthashConfig),
 		NetworkID:  1,
 		ChainID:    big.NewInt(1),
@@ -365,7 +365,7 @@ var difficultyChainConfigurations = map[string]ctypes.ChainConfigurator{
 		ECIP1010Length:     big.NewInt(0),
 		ECBP1100FBlock:     big.NewInt(0), // ETA 09 Oct 2020
 	},
-	"ETC_Mystique": &coregeth.CoreGethChainConfig{
+	"NRC_Mystique": &coregeth.CoreGethChainConfig{
 		Ethash:     new(ctypes.EthashConfig),
 		NetworkID:  1,
 		ChainID:    big.NewInt(1),

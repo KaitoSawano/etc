@@ -80,7 +80,7 @@ func getEraUncleBlockReward(era *big.Int, blockReward *uint256.Int) *uint256.Int
 // GetBlockUncleRewardByEra gets called _for each uncle miner_ associated with a winner block's uncles.
 func GetBlockUncleRewardByEra(era *big.Int, header, uncle *types.Header, blockReward *uint256.Int) *uint256.Int {
 	// Era 1 (index 0):
-	//   An extra reward to the winning miner for including uncles as part of the block, in the form of an extra 1/32 (0.15625ETC) per uncle included, up to a maximum of two (2) uncles.
+	//   An extra reward to the winning miner for including uncles as part of the block, in the form of an extra 1/32 (0.15625NRC) per uncle included, up to a maximum of two (2) uncles.
 	if era.Cmp(big.NewInt(0)) == 0 {
 		r := new(uint256.Int)
 		r.Add(uint256.MustFromBig(uncle.Number), big8) // 2,534,998 + 8              = 2,535,006

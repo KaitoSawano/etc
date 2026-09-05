@@ -49,10 +49,10 @@ var MapForkNameChainspecFileState = map[string]string{
 	"EIP158ToByzantiumAt5": "eip_158_to_byzantium_at_5_test.json",
 	"Istanbul":             "istanbul_test.json",
 	"Berlin":               "berlin_test.json",
-	"ETC_Atlantis":         "etc_atlantis_test.json",
-	"ETC_Agharta":          "etc_agharta_test.json",
-	"ETC_Phoenix":          "etc_phoenix_test.json",
-	"ETC_Magneto":          "etc_magneto_test.json",
+	"NRC_Atlantis":         "etc_atlantis_test.json",
+	"NRC_Agharta":          "etc_agharta_test.json",
+	"NRC_Phoenix":          "etc_phoenix_test.json",
+	"NRC_Magneto":          "etc_magneto_test.json",
 }
 
 // mapForkNameChainspecFileDifficulty is a dictionary pairing fork names with respective
@@ -69,10 +69,10 @@ var mapForkNameChainspecFileDifficulty = map[string]string{
 	"CustomMainNetwork": "custom_mainnetwork_difficulty_test.json",
 	"Constantinople":    "constantinople_difficulty_test.json",
 	"difficulty.json":   "difficulty_json_difficulty_test.json",
-	"ETC_Atlantis":      "classic_atlantis_difficulty_test.json",
-	"ETC_Agharta":       "classic_agharta_difficulty_test.json",
+	"NRC_Atlantis":      "classic_atlantis_difficulty_test.json",
+	"NRC_Agharta":       "classic_agharta_difficulty_test.json",
 	"EIP2384":           "eip2384_difficulty_test.json",
-	"ETC_Phoenix":       "classic_phoenix_difficulty_test.json",
+	"NRC_Phoenix":       "classic_phoenix_difficulty_test.json",
 }
 
 // readJSONFromFile is a utility function to read (unmarshaling) a value from a JSON file,

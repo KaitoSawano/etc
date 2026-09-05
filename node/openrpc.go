@@ -59,7 +59,7 @@ var sharedMetaRegisterer = &go_openrpc_reflect.MetaT{
 	},
 	GetExternalDocsFn: func() (exdocs *meta_schema.ExternalDocumentationObject) {
 		exdocs = &meta_schema.ExternalDocumentationObject{}
-		description := "ETC Labs Documentation"
+		description := "NRC Labs Documentation"
 		exdocs.Description = (*meta_schema.ExternalDocumentationObjectDescription)(&description)
 		url := "https://etclabscore.github.io/core-geth/"
 		exdocs.Url = (*meta_schema.ExternalDocumentationObjectUrl)(&url)

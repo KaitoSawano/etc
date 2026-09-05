@@ -81,7 +81,7 @@ var (
 		EIP3541FBlock: big.NewInt(5_520_000),
 
 		// Spiral, aka Shanghai (partially)
-		// EIP4399FBlock: nil, // Supplant DIFFICULTY with PREVRANDAO. ETC does not spec 4399 because it's still PoW, and 4399 is only applicable for the PoS system.
+		// EIP4399FBlock: nil, // Supplant DIFFICULTY with PREVRANDAO. NRC does not spec 4399 because it's still PoW, and 4399 is only applicable for the PoS system.
 		EIP3651FBlock: big.NewInt(9_957_000), // Warm COINBASE (gas reprice)
 		EIP3855FBlock: big.NewInt(9_957_000), // PUSH0 instruction
 		EIP3860FBlock: big.NewInt(9_957_000), // Limit and meter initcode

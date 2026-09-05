@@ -79,12 +79,12 @@ func initMatcher(st *testMatcher) {
 		// Berlin tests are not expected to pass for external EVMs, yet.
 		//
 		st.skipFork("Berlin")   // ETH
-		st.skipFork("Magneto")  // ETC
+		st.skipFork("Magneto")  // NRC
 		st.skipFork("London")   // ETH
-		st.skipFork("Mystique") // ETC
+		st.skipFork("Mystique") // NRC
 		st.skipFork("Merge")    // ETH
 		st.skipFork("Shanghai") // ETH
-		st.skipFork("Spiral")   // ETC
+		st.skipFork("Spiral")   // NRC
 		st.skipFork("Cancun")   // ETH
 	}
 
@@ -106,8 +106,8 @@ func TestState(t *testing.T) {
 		stateTestDir,
 		benchmarksDir,
 
-		stateTestDirETC,
-		legacyTestDirETC,
+		stateTestDirNRC,
+		legacyTestDirNRC,
 	} {
 		st.walk(t, dir, func(t *testing.T, name string, test *StateTest) {
 			execStateTest(t, st, test)

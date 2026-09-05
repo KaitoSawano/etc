@@ -103,11 +103,11 @@ func TestGenStateAll(t *testing.T) {
 	tm.errorPanics = true
 	tm.gitHead = head
 
-	tm.generateFromReference("Byzantium", "ETC_Atlantis")
-	tm.generateFromReference("ConstantinopleFix", "ETC_Agharta")
-	tm.generateFromReference("Berlin", "ETC_Magneto")
-	tm.generateFromReference("Istanbul", "ETC_Phoenix")
-	tm.generateFromReference("London", "ETC_Mystique")
+	tm.generateFromReference("Byzantium", "NRC_Atlantis")
+	tm.generateFromReference("ConstantinopleFix", "NRC_Agharta")
+	tm.generateFromReference("Berlin", "NRC_Magneto")
+	tm.generateFromReference("Istanbul", "NRC_Phoenix")
+	tm.generateFromReference("London", "NRC_Mystique")
 
 	for _, dir := range []string{
 		stateTestDir,
@@ -144,11 +144,11 @@ func TestGenStateSingles(t *testing.T) {
 	tm.errorPanics = true
 	tm.gitHead = head
 
-	tm.generateFromReference("Byzantium", "ETC_Atlantis")
-	tm.generateFromReference("ConstantinopleFix", "ETC_Agharta")
-	tm.generateFromReference("Berlin", "ETC_Magneto")
-	tm.generateFromReference("Istanbul", "ETC_Phoenix")
-	tm.generateFromReference("London", "ETC_Mystique")
+	tm.generateFromReference("Byzantium", "NRC_Atlantis")
+	tm.generateFromReference("ConstantinopleFix", "NRC_Agharta")
+	tm.generateFromReference("Berlin", "NRC_Magneto")
+	tm.generateFromReference("Istanbul", "NRC_Phoenix")
+	tm.generateFromReference("London", "NRC_Mystique")
 
 	for _, f := range files {
 		tm.runTestFile(t, f, f, tm.testWriteTest)
@@ -212,7 +212,7 @@ func (tm *testMatcherGen) testWriteTest(t *testing.T, name string, test *StateTe
 					t.Fatal(err)
 				}
 				b, _ := json.MarshalIndent(conf, "", "    ")
-				configPathTarget := filepath.Join(targetDirCommon, "configs", fmt.Sprintf("%s_config.json", target)) // e.g. "testdata_generated/GeneralStateTests/ETC_Atlantis_config.json"
+				configPathTarget := filepath.Join(targetDirCommon, "configs", fmt.Sprintf("%s_config.json", target)) // e.g. "testdata_generated/GeneralStateTests/NRC_Atlantis_config.json"
 				os.MkdirAll(filepath.Dir(configPathTarget), os.ModePerm)
 				if _, statErr := os.Stat(configPathTarget); os.IsNotExist(statErr) {
 					if err := os.WriteFile(configPathTarget, b, os.ModePerm); err != nil {

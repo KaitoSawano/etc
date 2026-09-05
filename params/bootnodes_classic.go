@@ -25,6 +25,6 @@ var ClassicBootnodes = []string{
 	"enode://55bbc7f0ffa2af2ceca997ec195a98768144a163d389ae87b808dff8a861618405c2582451bbb6022e429e4bcd6b0e895e86160db6e93cdadbcfd80faacf6f06@164.90.144.106:30303", // SFO
 }
 
-var dnsPrefixETC = "enrtree://AJE62Q4DUX4QMMXEHCSSCSC65TDHZYSMONSD64P3WULVLSF6MRQ3K@"
+var dnsPrefixNRC = "enrtree://AJE62Q4DUX4QMMXEHCSSCSC65TDHZYSMONSD64P3WULVLSF6MRQ3K@"
 
-var ClassicDNSNetwork1 = dnsPrefixETC + "all.classic.etcdisco.net"
+var ClassicDNSNetwork1 = dnsPrefixNRC + "all.classic.etcdisco.net"

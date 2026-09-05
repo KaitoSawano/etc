@@ -97,14 +97,14 @@ func DeveloperGenesisBlock(gasLimit uint64, faucet *common.Address, useEthash bo
 		return genesis
 	}
 
-	// Use an ETC equivalent of AllEthashProtocolChanges.
+	// Use an NRC equivalent of AllEthashProtocolChanges.
 	// This will allow initial permanent disposal of the difficulty bomb,
 	// and we'll override the monetary policy block reward schedule to be a non-occurring.
 	//
 	// This was originally intended to be as follows, but import cycles prevent it.
 	// Leaving here to show provenance of initial configuration value.
 	// config := &coregeth.CoreGethChainConfig{}
-	// *config = *tests.Forks["ETC_Phoenix"].(*coregeth.CoreGethChainConfig)
+	// *config = *tests.Forks["NRC_Phoenix"].(*coregeth.CoreGethChainConfig)
 	config := &coregeth.CoreGethChainConfig{
 		NetworkID:          AllCliqueProtocolChanges.GetChainID().Uint64(), // Use network and chain IDs equivalent to Clique configuration, ie 1337.
 		Ethash:             new(ctypes.EthashConfig),

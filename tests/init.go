@@ -62,7 +62,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		EIP158Block:    big.NewInt(0),
 		ByzantiumBlock: big.NewInt(0),
 	},
-	"ETC_Atlantis": &coregeth.CoreGethChainConfig{
+	"NRC_Atlantis": &coregeth.CoreGethChainConfig{
 		NetworkID:          1,
 		Ethash:             new(ctypes.EthashConfig),
 		ChainID:            big.NewInt(61),
@@ -114,7 +114,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		ConstantinopleBlock: big.NewInt(0),
 		PetersburgBlock:     big.NewInt(0),
 	},
-	"ETC_Agharta": &coregeth.CoreGethChainConfig{
+	"NRC_Agharta": &coregeth.CoreGethChainConfig{
 		NetworkID:          1,
 		Ethash:             new(ctypes.EthashConfig),
 		ChainID:            big.NewInt(61),
@@ -156,7 +156,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		PetersburgBlock:     big.NewInt(0),
 		IstanbulBlock:       big.NewInt(0),
 	},
-	"ETC_Phoenix": &coregeth.CoreGethChainConfig{
+	"NRC_Phoenix": &coregeth.CoreGethChainConfig{
 		NetworkID:       1,
 		Ethash:          new(ctypes.EthashConfig),
 		ChainID:         big.NewInt(61),
@@ -379,7 +379,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		TerminalTotalDifficulty:       big.NewInt(0),
 		TerminalTotalDifficultyPassed: true,
 	},
-	"ETC_Magneto": &coregeth.CoreGethChainConfig{
+	"NRC_Magneto": &coregeth.CoreGethChainConfig{
 		NetworkID:       1,
 		Ethash:          new(ctypes.EthashConfig),
 		ChainID:         big.NewInt(61),
@@ -424,7 +424,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		ECIP1010PauseBlock: nil,
 		ECIP1010Length:     nil,
 	},
-	"ETC_Mystique": &coregeth.CoreGethChainConfig{
+	"NRC_Mystique": &coregeth.CoreGethChainConfig{
 		NetworkID:       1,
 		Ethash:          new(ctypes.EthashConfig),
 		ChainID:         big.NewInt(61),
@@ -521,7 +521,7 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		TerminalTotalDifficulty: big.NewInt(0),
 		ShanghaiTime:            u64(15_000),
 	},
-	"ETC_Spiral": &coregeth.CoreGethChainConfig{
+	"NRC_Spiral": &coregeth.CoreGethChainConfig{
 		NetworkID:       1,
 		Ethash:          new(ctypes.EthashConfig),
 		ChainID:         big.NewInt(61),
@@ -577,14 +577,14 @@ var Forks = map[string]ctypes.ChainConfigurator{
 		EIP3554FBlock: nil,
 
 		// Shanghai == Spiral
-		EIP4399FBlock: nil,           // Supplant DIFFICULTY with PREVRANDAO. ETC does not spec 4399 because it's still PoW, and 4399 is only applicable for the PoS system.
+		EIP4399FBlock: nil,           // Supplant DIFFICULTY with PREVRANDAO. NRC does not spec 4399 because it's still PoW, and 4399 is only applicable for the PoS system.
 		EIP3651FBlock: big.NewInt(0), // Warm COINBASE (gas reprice)
 		EIP3855FBlock: big.NewInt(0), // PUSH0 instruction
 		EIP3860FBlock: big.NewInt(0), // Limit and meter initcode
 		EIP4895FBlock: nil,           // Beacon chain push withdrawals as operations
 		EIP6049FBlock: big.NewInt(0), // Deprecate SELFDESTRUCT (noop)
 
-		// ETC specifics
+		// NRC specifics
 		DisposalBlock:      big.NewInt(0),
 		ECIP1017FBlock:     big.NewInt(5000000), // FIXME(meows) maybe
 		ECIP1017EraRounds:  big.NewInt(5000000),
